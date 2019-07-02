@@ -1,9 +1,14 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import App from './App';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  shallow(<App />);
+});
+
+it('renders values', () => {
+  const wrapper = shallow(<App />);
+  const testValue = <h2>Values from API:</h2>;
+
+  expect(wrapper.contains(testValue)).toEqual(true);
 });
