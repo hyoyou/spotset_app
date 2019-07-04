@@ -5,7 +5,6 @@ import Song from '../../models/Song';
 import SongSet from '../../models/SongSet';
 import Venue from '../../models/Venue';
 
-
 describe("Setlist Model", () => {
   describe("fromJson", () => {
     it("sets the setlist if the incoming json is empty", () => {
