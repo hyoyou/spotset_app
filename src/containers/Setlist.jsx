@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import SetlistView from '../components/SetlistView';
+import SetlistView from './SetlistView';
 
 export default class Setlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      setlist: "",
-      error: "" 
+      setlist: '',
+      error: '' 
     };
   }
 
   componentDidMount() {
-    this.fetchSetlist(this.props.setlistId);
+    const { setlistId } = this.props;
+    this.fetchSetlist(setlistId);
   }
 
   async fetchSetlist(setlistId) {
@@ -22,16 +23,16 @@ export default class Setlist extends Component {
         this.setState({ setlist: data });
       });
     } catch (error) {
-      this.setState({ error: error });
+      this.setState({ error });
     }
   }
- 
+
   render() {
     const { setlist } = this.state;
 
     return (
       <div className="Setlist">
-        <SetlistView setlist = {this.state.setlist} />
+        <SetlistView setlist={setlist} />
       </div>
     );
   }
