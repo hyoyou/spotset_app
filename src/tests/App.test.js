@@ -10,8 +10,7 @@ describe('App Component', () => {
 
   it('renders child components', () => {
     const wrapper = shallow(<App />);
-    const testSetlistId = '3393481d';
 
-    expect(wrapper.contains(<Setlist setlistId={testSetlistId} />)).toEqual(true);
+    expect(wrapper.find(Setlist)).toHaveLength(1);
   });
-})
+});

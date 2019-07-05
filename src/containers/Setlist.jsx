@@ -6,7 +6,7 @@ export default class Setlist extends Component {
     super(props);
     this.state = {
       setlist: '',
-      error: '' 
+      error: '',
     };
   }
 
@@ -16,14 +16,16 @@ export default class Setlist extends Component {
   }
 
   async fetchSetlist(setlistId) {
+    const { httpClient } = this.props;
+    const url = `https://localhost:5001/api/setlists/${setlistId}`;
+
     try {
-      await fetch(`/api/setlists/${setlistId}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ setlist: data });
-      });
+      await httpClient.get(url)
+        .then((response) => {
+          this.setState({ setlist: response.data });
+        });
     } catch (error) {
-      this.setState({ error });
+      this.setState({ error: error.message });
     }
   }
 

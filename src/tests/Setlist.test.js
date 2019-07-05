@@ -1,6 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import axios from 'axios';
+import PromiseFactory from './helpers/PromiseFactory';
 import Setlist from '../containers/Setlist';
+
+jest.mock('axios');
 
 describe('Setlist Component', () => {
   it('renders without crashing', () => {
@@ -8,18 +12,18 @@ describe('Setlist Component', () => {
   });
 
   it('fetches data from the server when server returns a success response', (done) => {
-    const mockSuccessResponse = {};
-    const mockJsonPromise = Promise.resolve(mockSuccessResponse);
-    const mockFetchPromise = Promise.resolve({
-      json: () => mockJsonPromise,
-    });
-    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+    const promise = PromiseFactory.createResolve({ data: {} });
+    const httpClient = axios;
+
+    httpClient.get.mockReturnValue(promise);
+    const spy = jest.spyOn(httpClient, 'get');
 
     const fakeSetlistId = 'setlistId';
-    const wrapper = shallow(<Setlist setlistId={fakeSetlistId} />);
+    const url = `https://localhost:5001/api/setlists/${fakeSetlistId}`;
+    const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(`/api/setlists/${fakeSetlistId}`);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(url);
 
     process.nextTick(() => {
       expect(wrapper.state()).toEqual({
@@ -27,21 +31,24 @@ describe('Setlist Component', () => {
         setlist: {},
       });
 
-      global.fetch.mockClear();
+      spy.mockClear();
       done();
     });
   });
 
   it('fetches error response from the server when server returns an error response', (done) => {
-    const mockErrorResponse = 'error fetching';
-    const mockFetchPromise = Promise.reject(mockErrorResponse);
-    jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
+    const promise = PromiseFactory.createReject({ message: 'error fetching' });
+    const httpClient = axios;
+
+    httpClient.get.mockReturnValue(promise);
+    const spy = jest.spyOn(httpClient, 'get');
 
     const fakeSetlistId = 'setlistId';
-    const wrapper = shallow(<Setlist setlistId={fakeSetlistId} />);
+    const url = `https://localhost:5001/api/setlists/${fakeSetlistId}`;
+    const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(global.fetch).toHaveBeenCalledWith(`/api/setlists/${fakeSetlistId}`);
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(url);
 
     process.nextTick(() => {
       expect(wrapper.state()).toEqual({
@@ -49,7 +56,7 @@ describe('Setlist Component', () => {
         setlist: '',
       });
 
-      global.fetch.mockClear();
+      spy.mockClear();
       done();
     });
   });
