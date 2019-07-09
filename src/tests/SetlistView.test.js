@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
 import SetlistView from '../containers/SetlistView';
@@ -7,19 +8,21 @@ describe('SetlistView Component', () => {
     shallow(<SetlistView setlist="" />);
   });
 
-  it('renders the playlist title from valid passed in props', () => {
+  it('displays the setlist from valid passed in props', () => {
     const testProps = {
       id: 'testId',
-      eventDate: '01-07-2019',
-      artist: { name: 'artistName' },
-      venue: { name: 'venueName' },
-      sets: { set: [] },
+      eventDate: '07-01-2019',
+      artist: 'artistName',
+      venue: 'venueName',
+      tracks: [
+        { name: 'Song1', trackUri: 'spotify:track:sampleUri1' },
+        { name: 'Song2', trackUri: 'spotify:track:sampleUri2' },
+        { name: 'Song3', trackUri: 'spotify:track:sampleUri3' },
+      ],
     };
 
-    const wrapper = shallow(
-      <SetlistView setlist={testProps} />,
-    );
+    const wrapper = shallow(<SetlistView setlist={testProps} />);
 
-    expect(wrapper.text()).toContain('artistName at venueName on 01-07-2019');
+    expect(wrapper.instance().props.setlist.tracks.length).toEqual(3);
   });
 });

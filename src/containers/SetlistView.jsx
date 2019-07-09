@@ -1,30 +1,25 @@
+/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import TitleForm from './TitleForm';
+import './SetlistView.css';
 
-export default class Setlist extends Component {
+export default class SetlistView extends Component {
   render() {
-    const { setlist } = this.props;
+    const { saveTitleHandler, setlist, title } = this.props;
 
     return (
       <div className="SetlistView">
-        { setlist.artist && (
-          <h2>{ setlist.artist.name } at { setlist.venue.name } on { setlist.eventDate }</h2>
-        )}
+        <TitleForm title={title} saveTitleHandler={saveTitleHandler} />
 
-        { setlist.sets &&
-          setlist.sets.set.map((act, id) => {
-            return (
-              <div key={id}>
-                <h3>Act {id + 1}:</h3>
-                <ul>
-                  {act.song.map((track, id) => {
-                    return (
-                      <li key={id}>{track.name}</li>
-                    )
-                  })}
-                </ul>
-              </div>
-            )
-          }) 
+        { setlist.tracks &&
+          <div className="SetlistTable">
+            <ol>
+              {setlist.tracks.map((track, id) => {
+                return <li key={ id }>{ track.name }</li>
+              })}
+            </ol>
+          </div>
         }
       </div>
     );

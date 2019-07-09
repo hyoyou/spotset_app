@@ -12,8 +12,10 @@ export default class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Setlist httpClient={axios} setlistId={testSetlistId} />
         </header>
+        <div className="App-body">
+          <Setlist httpClient={axios} setlistId={testSetlistId} />
+        </div>
       </div>
     );
   }
