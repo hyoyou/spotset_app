@@ -49,6 +49,7 @@ export default class Setlist extends Component {
       if (track.trackUri !== null) {
         availableUris.push(track.trackUri)
       }
+      return availableUris;
     })
 
     return availableUris;
