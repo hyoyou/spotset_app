@@ -7,24 +7,24 @@ import Setlist from '../containers/Setlist';
 
 jest.mock('axios');
 
+const testProps = {
+  id: 'testId',
+  eventDate: '07-01-2019',
+  artist: 'artistName',
+  venue: 'venueName',
+  tracks: [
+    { name: 'Song1', trackUri: 'spotify:track:sampleUri1' },
+    { name: 'Song2', trackUri: 'spotify:track:sampleUri2' },
+    { name: 'Song3', trackUri: 'spotify:track:sampleUri3' },
+  ],
+};
+
 describe('Setlist Component', () => {
   it('renders without crashing', () => {
     shallow(<Setlist />);
   });
 
-  it('fetches data from the server when server returns a success response', (done) => {
-    const testProps = {
-      id: 'testId',
-      eventDate: '07-01-2019',
-      artist: 'artistName',
-      venue: 'venueName',
-      tracks: [
-        { name: 'Song1', trackUri: 'spotify:track:sampleUri1' },
-        { name: 'Song2', trackUri: 'spotify:track:sampleUri2' },
-        { name: 'Song3', trackUri: 'spotify:track:sampleUri3' },
-      ],
-    };
-
+  it('fetches setlist from the server when server returns a success response and saves to state', (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
 
@@ -39,13 +39,7 @@ describe('Setlist Component', () => {
     expect(spy).toHaveBeenCalledWith(url);
 
     process.nextTick(() => {
-      expect(wrapper.state()).toEqual({
-        error: '',
-        setlist: testProps,
-        title: 'artistName at venueName on 07-01-2019',
-        playlistId: '',
-        playlistTracks: [],
-      });
+      expect(wrapper.state().setlist).toEqual(testProps);
 
       spy.mockClear();
       done();
@@ -67,13 +61,7 @@ describe('Setlist Component', () => {
     expect(spy).toHaveBeenCalledWith(url);
 
     process.nextTick(() => {
-      expect(wrapper.state()).toEqual({
-        error: 'error fetching',
-        setlist: '',
-        title: '',
-        playlistId: '',
-        playlistTracks: [],
-      });
+      expect(wrapper.state().error).toEqual('error fetching');
 
       spy.mockClear();
       done();
@@ -81,44 +69,64 @@ describe('Setlist Component', () => {
   });
 
   it('updates the title when saveTitle is called with the title of the playlist', (done) => {
-    const testProps = {
-      id: 'testId',
-      eventDate: '07-01-2019',
-      artist: 'artistName',
-      venue: 'venueName',
-      tracks: [
-        { name: 'Song1', trackUri: 'spotify:track:sampleUri1' },
-        { name: 'Song2', trackUri: 'spotify:track:sampleUri2' },
-        { name: 'Song3', trackUri: 'spotify:track:sampleUri3' },
-      ],
-    };
-
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} setlistId={'setlistId'} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} />);
 
     process.nextTick(() => {
-      expect(wrapper.state()).toEqual({
-        error: '',
-        setlist: testProps,
-        title: 'artistName at venueName on 07-01-2019',
-        playlistId: '',
-        playlistTracks: [],
-      });
+      expect(wrapper.state().title).toEqual('artistName at venueName on 07-01-2019');
 
       done();
     });
 
     wrapper.instance().saveTitle('Artist at Venue on Date');
 
-    expect(wrapper.state()).toEqual({
-      error: '',
-      setlist: '',
-      title: 'Artist at Venue on Date',
-      playlistId: '',
-      playlistTracks: [],
+    expect(wrapper.state().title).toEqual('Artist at Venue on Date');
+  });
+
+  it('adds track Uris to playlistTracks state when data is received', (done) => {
+    const promise = PromiseFactory.createResolve({ data: testProps });
+    const httpClient = axios;
+    httpClient.get.mockReturnValue(promise);
+
+    const wrapper = mount(<Setlist httpClient={httpClient} />);
+
+    process.nextTick(() => {
+      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
+
+      done();
+    });
+  });
+
+  it('adds removes a track Uri from playlistTracks state when handleRemoveTrack is called with the uri', (done) => {
+    const promise = PromiseFactory.createResolve({ data: testProps });
+    const httpClient = axios;
+    httpClient.get.mockReturnValue(promise);
+
+    const wrapper = mount(<Setlist httpClient={httpClient} />);
+
+    process.nextTick(() => {
+      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
+      wrapper.instance().handleRemoveTrack("spotify:track:sampleUri1");
+      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
+      done();
+    });
+  });
+
+  it('adds adds a track Uri from playlistTracks state when handleAddTrack is called with the uri', (done) => {
+    const promise = PromiseFactory.createResolve({ data: testProps });
+    const httpClient = axios;
+    httpClient.get.mockReturnValue(promise);
+
+    const wrapper = mount(<Setlist httpClient={httpClient} />);
+
+    process.nextTick(() => {
+      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
+      wrapper.instance().handleAddTrack("spotify:track:sampleUri4");
+      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3", "spotify:track:sampleUri4"]);
+      done();
     });
   });
 });

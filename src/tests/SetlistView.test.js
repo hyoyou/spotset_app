@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import SetlistView from '../containers/SetlistView';
 
 describe('SetlistView Component', () => {
@@ -21,8 +21,9 @@ describe('SetlistView Component', () => {
       ],
     };
 
-    const wrapper = shallow(<SetlistView setlist={testProps} />);
+    const wrapper = mount(<SetlistView setlist={testProps} />);
 
     expect(wrapper.instance().props.setlist.tracks.length).toEqual(3);
+    expect(wrapper.find('Track').length).toEqual(3);
   });
 });

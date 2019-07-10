@@ -8,7 +8,6 @@ export default class Setlist extends Component {
       setlist: '',
       error: '',
       title: '',
-      playlistId: '',
       playlistTracks: []
     };
   }
@@ -26,10 +25,12 @@ export default class Setlist extends Component {
       await httpClient.get(url)
         .then((response) => {
           let title = this.formatTitle(response.data);
+          let playlistTracks = this.getDefaultPlaylistTracks(response.data.tracks);
           
           this.setState({ 
             setlist: response.data,
-            title          
+            title,
+            playlistTracks
           });
         });
     } catch (error) {
@@ -41,8 +42,32 @@ export default class Setlist extends Component {
     return setlist.artist + ' at ' + setlist.venue + ' on ' + setlist.eventDate;
   }
 
+  getDefaultPlaylistTracks = (availableTracks) => {
+    let availableUris = [];
+
+    availableTracks.map((track) => {
+      if (track.trackUri !== null) {
+        availableUris.push(track.trackUri)
+      }
+    })
+
+    return availableUris;
+  }
+
   saveTitle = (title) => {
     this.setState({ title });
+  }
+
+  handleAddTrack = (uri) => {
+    this.setState({ playlistTracks: [...this.state.playlistTracks, uri] });
+  }
+
+  handleRemoveTrack = (uri) => {
+    let updatedTracks = this.state.playlistTracks.filter((track) => {
+      return track !== uri;
+    })
+
+    this.setState({ playlistTracks: updatedTracks });
   }
 
   addToPlaylist = (playlistTracks) => {
@@ -50,11 +75,11 @@ export default class Setlist extends Component {
   }
 
   render() {
-    const { setlist, title } = this.state;
+    const { playlistTracks, setlist, title } = this.state;
 
     return (
       <div className="Setlist">
-        <SetlistView setlist={setlist} title={title} saveTitleHandler={this.saveTitle} />
+        <SetlistView setlist={setlist} playlistTracks={playlistTracks} title={title} saveTitleHandler={this.saveTitle} handleAddTrack={this.handleAddTrack} handleRemoveTrack={this.handleRemoveTrack} />
       </div>
     );
   }
