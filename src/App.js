@@ -1,29 +1,23 @@
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import logo from './logo.svg';
+import Setlist from './containers/Setlist';
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { values: [] };
- 
-    fetch('/api/values')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ values: data });
-      });
-  }
- 
   render() {
+    const testSetlistId = '3393481d';
+
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Values from API:</h2>
-          <ul>
-            {this.state.values.map((value, index) => <li key={index}>{value}</li>)}
-          </ul>
         </header>
+        <div className="App-body">
+          <Setlist httpClient={axios} setlistId={testSetlistId} />
+        </div>
       </div>
     );
   }
