@@ -9,15 +9,15 @@ describe('Spotify Component', () => {
 
     expect(wrapper.instance().state.isAuthenticated).toBeFalsy();
     expect(wrapper.find('Login').length).toEqual(1);
-    expect(wrapper.find('Playlist').length).toEqual(0);
+    expect(wrapper.find('Logout').length).toEqual(0);
   });
 
-  it('renders the Playlist component when user is signed in', () => {
+  it('renders the Logout component when user is signed in', () => {
     const wrapper = shallow(<Spotify />);
     wrapper.setState({ isAuthenticated: true });
 
     expect(wrapper.instance().state.isAuthenticated).toBeTruthy();
-    expect(wrapper.find('Playlist').length).toEqual(1);
+    expect(wrapper.find('Logout').length).toEqual(1);
     expect(wrapper.find('Login').length).toEqual(0);
   });
 });

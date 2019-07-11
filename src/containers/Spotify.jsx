@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as SpotifyHelper from '../helpers/spotifyHelpers';
 import axios from 'axios';
 import Login from './Login';
-import Playlist from './Playlist';
+import Logout from './Logout';
 import Setlist from './Setlist';
 
 export default class Spotify extends Component {
@@ -36,16 +36,17 @@ export default class Spotify extends Component {
   };
 
   render() {
+    const { isAuthenticated } = this.state;
     const testSetlistId = '3393481d';
 
     return (
       <>
         <div id="Setlist">
-          <Setlist httpClient={axios} setlistId={testSetlistId} />
+          <Setlist httpClient={axios} setlistId={testSetlistId} isUser={isAuthenticated} />
         </div>
 
         <div id="Spotify">
-          {!this.state.isAuthenticated ? <Login /> : <Playlist logOutHandler={this.logout} /> }
+          {!this.state.isAuthenticated ? <Login /> : <Logout logOutHandler={this.logout} /> }
         </div>
       </>
     );

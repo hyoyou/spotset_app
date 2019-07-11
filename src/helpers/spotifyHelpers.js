@@ -41,3 +41,13 @@ export function checkUrlForSpotifyAccessToken() {
   localStorage.setItem('expires_at', expiresAt);
   return accessToken;
 }
+
+export function createAndSavePlaylist() {
+  const hash = getHashParams();
+  const accessToken = hash;
+  if (!accessToken) {
+    return false;
+  }
+
+  return accessToken;
+}
