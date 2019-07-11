@@ -2,7 +2,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../App';
-import Setlist from '../containers/Setlist';
+import Spotify from '../containers/Spotify';
 
 describe('App Component', () => {
   it('renders without crashing', () => {
@@ -12,6 +12,6 @@ describe('App Component', () => {
   it('renders child components', () => {
     const wrapper = shallow(<App />);
 
-    expect(wrapper.find(Setlist)).toHaveLength(1);
+    expect(wrapper.find(Spotify)).toHaveLength(1);
   });
 });

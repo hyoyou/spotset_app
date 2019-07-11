@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import TitleForm from './TitleForm';
 import Track from './Track';
-import './SetlistView.css';
 
 export default class SetlistView extends Component {
   render() {
@@ -16,9 +15,10 @@ export default class SetlistView extends Component {
         <TitleForm title={title} saveTitleHandler={saveTitleHandler} />
 
         { setlist.tracks
-          && <div className="PlaylistTracks">
-            { setlist.tracks.map((track, id) => 
+          && <div className="App-list">
+            { setlist.tracks.map((track, id) =>
               <Track
+                key={id}
                 playlistTracks={playlistTracks}
                 title={track.name}
                 uri={track.trackUri}
@@ -26,7 +26,7 @@ export default class SetlistView extends Component {
                 addTrack={handleAddTrack}
                 removeTrack={handleRemoveTrack}
               />)}
-          </div>
+             </div>
         }
       </div>
     );

@@ -1,42 +1,175 @@
 .App {
+  background-color: #282c34;
+  color: white;
   text-align: center;
+  margin: auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 20px;
+  grid-template-rows: 0.75fr 0.5fr 5fr 0.5fr;
+  grid-row-gap: 20px;
+  justify-items: stretch;
+  align-items: stretch;
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
+  grid-column: 1/1; 
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-body {
-  background-color: #282c34;
-  display: flex;
+.App-field {
+  grid-column: 1/1;
+  grid-row: 2; 
   align-items: center;
   justify-content: center;
   font-size: 1em;
+}
+
+.App-list {
+  grid-column: 1/1;
+  grid-row: 3/4; 
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+}
+
+#Setlist {
+  grid-column: 1/2;
+  grid-row: 2/4; 
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+}
+
+#Spotify {
+  grid-column: 2;
+  grid-row: 2;
+  border: 2px solid #228047;
+  border-radius: 4px;
+}
+
+.App-footer {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+#title {
+  text-align: center;
+  width: 75%;
+  padding: 0.75em 1.5em;
+  margin: 0.75em 0;
+  box-sizing: border-box;
+  border: 2px solid #228047;
+  border-radius: 4px;
+  background-color: #282c34d9;
   color: white;
+  font-size: 1em;
+}
+
+#btn-title {
+  text-align: center;
+  padding: 0.75em 1.5em;
+  margin: 0.75em 1em;
+  box-sizing: border-box;
+  border: 2px solid #228047;
+  border-radius: 4px;
+  background-color: #228047;
+  -webkit-transition-duration: 0.7s; /* Safari */
+  transition-duration: 0.7s;
+  color: white;
+  font-size: 1em;
+}
+
+#btn-title:hover {
+  cursor: pointer;
+}
+
+#btn-title:after {
+  content: "";
+  background: #90EE90;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+#btn-title:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+#btn-spotify {
+  text-align: center;
+  padding: 0.75em 1.5em;
+  margin: 0.75em 1em;
+  box-sizing: border-box;
+  border: 2px solid #228047;
+  border-radius: 4px;
+  background-color: #228047;
+  -webkit-transition-duration: 0.7s; /* Safari */
+  transition-duration: 0.7s;
+  color: white;
+  font-size: 1em;
+}
+
+.available {
+  text-align: center;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #228047;
+  border-radius: 4px;
+  background-color: #282c34d9;
+  color: white;
+  font-size: 1em;
+}
+
+.available:hover {
+  cursor: pointer;
+}
+
+#removed.available {
+  text-align: center;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #515553;
+  border-radius: 4px;
+  background-color: #282c34d9;
+  color: white;
+  font-size: 1em;
+}
+
+.notfound {
+  text-align: center;
+  padding: 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid red;
+  border-radius: 4px;
+  background-color: #282c34d9;
+  color: white;
+  font-size: 1em;
+  pointer-events: none;
+  cursor: default;
 }
 
 .App-link {
   color: #228047;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

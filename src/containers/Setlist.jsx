@@ -19,7 +19,7 @@ export default class Setlist extends Component {
 
   fetchSetlist = async (setlistId) => {
     const { httpClient } = this.props;
-    const url = `https://localhost:5001/api/setlists/${setlistId}`;
+    const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${setlistId}`;
 
     try {
       await httpClient.get(url)

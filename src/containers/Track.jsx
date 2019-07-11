@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './SetlistView.css';
 
 export default class Track extends Component {
   state = {
