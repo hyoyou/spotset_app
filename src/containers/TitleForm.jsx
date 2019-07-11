@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './SetlistView.css';
 
 export default class TitleForm extends Component {
   state = {
@@ -29,7 +28,7 @@ export default class TitleForm extends Component {
     const { newTitle } = this.state;
 
     return (
-      <div className="PlaylistTitle">
+      <div className="App-field">
         <form onSubmit={ this.onClick }>
           <input id='title' name='newTitle' type='text' value={ newTitle } onChange={ this.onInput } />
           <input id='btn-title' type='submit' value='Update Title' />

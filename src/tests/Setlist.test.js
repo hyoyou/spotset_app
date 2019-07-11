@@ -7,6 +7,10 @@ import Setlist from '../containers/Setlist';
 
 jest.mock('axios');
 
+afterEach(() => {
+  delete process.env.REACT_APP_SPOTSET_DEV_SERVER;
+});
+
 const testProps = {
   id: 'testId',
   eventDate: '07-01-2019',
@@ -32,7 +36,8 @@ describe('Setlist Component', () => {
     const spy = jest.spyOn(httpClient, 'get');
 
     const fakeSetlistId = 'setlistId';
-    const url = `https://localhost:5001/api/setlists/${fakeSetlistId}`;
+    process.env.REACT_APP_SPOTSET_DEV_SERVER = 'test';
+    const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${fakeSetlistId}`;
     const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
     expect(spy).toHaveBeenCalledTimes(1);
@@ -54,10 +59,10 @@ describe('Setlist Component', () => {
     const spy = jest.spyOn(httpClient, 'get');
 
     const fakeSetlistId = 'setlistId';
-    const url = `https://localhost:5001/api/setlists/${fakeSetlistId}`;
+    process.env.REACT_APP_SPOTSET_DEV_SERVER = 'test';
+    const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${fakeSetlistId}`;
     const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
-    expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(url);
 
     process.nextTick(() => {
@@ -94,7 +99,7 @@ describe('Setlist Component', () => {
     const wrapper = mount(<Setlist httpClient={httpClient} />);
 
     process.nextTick(() => {
-      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
+      expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
 
       done();
     });
@@ -108,9 +113,9 @@ describe('Setlist Component', () => {
     const wrapper = mount(<Setlist httpClient={httpClient} />);
 
     process.nextTick(() => {
-      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
-      wrapper.instance().handleRemoveTrack("spotify:track:sampleUri1");
-      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
+      expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
+      wrapper.instance().handleRemoveTrack('spotify:track:sampleUri1');
+      expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
       done();
     });
   });
@@ -123,9 +128,9 @@ describe('Setlist Component', () => {
     const wrapper = mount(<Setlist httpClient={httpClient} />);
 
     process.nextTick(() => {
-      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3"]);
-      wrapper.instance().handleAddTrack("spotify:track:sampleUri4");
-      expect(wrapper.state().playlistTracks).toEqual(["spotify:track:sampleUri1", "spotify:track:sampleUri2", "spotify:track:sampleUri3", "spotify:track:sampleUri4"]);
+      expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
+      wrapper.instance().handleAddTrack('spotify:track:sampleUri4');
+      expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3', 'spotify:track:sampleUri4']);
       done();
     });
   });
