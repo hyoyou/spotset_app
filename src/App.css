@@ -21,7 +21,8 @@
 }
 
 .App-header {
-  grid-column: 1/1; 
+  grid-column: 1/1;
+  padding-top: 1em;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -179,4 +180,15 @@
 
 .App-link {
   color: #228047;
+}
+
+#spot {
+  font-family: 'Raleway Dots', cursive;
+  font-size: 3em;
+}
+
+#set {
+  font-family: 'Raleway', sans-serif;
+  font-size: 3em;
+  font-weight: 300;
 }
