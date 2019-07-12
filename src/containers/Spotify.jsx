@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as SpotifyHelper from '../helpers/spotifyHelpers';
+import * as SpotifyHelper from '../helpers/SpotifyHelpers';
 import axios from 'axios';
 import Login from './Login';
 import Logout from './Logout';
@@ -21,7 +21,6 @@ export default class Spotify extends Component {
 
   isValid = () => {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    console.log("time left", expiresAt)
     return new Date().getTime() < expiresAt;
   }
 
@@ -35,15 +34,22 @@ export default class Spotify extends Component {
     })
   };
 
+  playlistHandler = async (playlist, title) => {
+    if (!this.isValid()) {
+      this.logout();
+    }
+
+    const newPlaylistId = await SpotifyHelper.createAndSavePlaylist(playlist, title);
+    return `https://open.spotify.com/playlist/${newPlaylistId}`;
+  }
+
   render() {
     const { isAuthenticated } = this.state;
     const testSetlistId = '3393481d';
 
     return (
       <>
-        <div id="Setlist">
-          <Setlist httpClient={axios} setlistId={testSetlistId} isUser={isAuthenticated} />
-        </div>
+        <Setlist httpClient={axios} setlistId={testSetlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} />
 
         <div id="Spotify">
           {!this.state.isAuthenticated ? <Login /> : <Logout logOutHandler={this.logout} /> }
