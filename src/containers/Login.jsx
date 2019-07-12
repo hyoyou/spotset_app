@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import * as SpotifyHelper from '../helpers/SpotifyHelpers';
+import * as SpotifyHelper from '../helpers/spotifyHelpers';
 
 export default class Login extends Component {
   render() {

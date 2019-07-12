@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { shallow } from 'enzyme';
 import React from 'react';
-import * as SpotifyHelper from '../helpers/SpotifyHelpers';
+import * as SpotifyHelper from '../helpers/spotifyHelpers';
 import Spotify from '../containers/Spotify';
 
 describe('Spotify Component', () => {

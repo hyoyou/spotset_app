@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as SpotifyHelper from '../helpers/SpotifyHelpers';
+import * as SpotifyHelper from '../helpers/spotifyHelpers';
 import axios from 'axios';
 import Login from './Login';
 import Logout from './Logout';

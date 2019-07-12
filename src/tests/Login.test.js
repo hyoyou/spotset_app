@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { mount } from 'enzyme';
 import React from 'react';
-import * as SpotifyHelper from '../helpers/SpotifyHelpers';
+import * as SpotifyHelper from '../helpers/spotifyHelpers';
 import Login from '../containers/Login';
 
 describe('Login Component', () => {
