@@ -7,7 +7,7 @@ export default class Login extends Component {
     return (
       <div className="Login">
         <a href={SpotifyHelper.getRedirectUrl()}>
-          <button id="btn-spotify" type="button">Log in to Spotify</button>
+          <button id="btn-spotify">Log in to Spotify</button>
         </a>
       </div>
     );

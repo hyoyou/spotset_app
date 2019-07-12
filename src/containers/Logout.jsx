@@ -7,7 +7,7 @@ export default class Logout extends Component {
 
     return (
       <div className="Logout">
-        <button id="btn-spotify" onClick={logOutHandler} type="button">Log Out</button>
+        <button id="btn-spotify" onClick={logOutHandler}>Log Out</button>
       </div>
     );
   }
