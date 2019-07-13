@@ -11,7 +11,7 @@ export default class SetlistView extends Component {
     } = this.props;
 
     return (
-      <div className="SetlistView">
+      <div id="SetlistView">
         <TitleForm title={title} saveTitleHandler={saveTitleHandler} />
 
         { setlist.tracks

@@ -9,7 +9,7 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>SpotSet</h1>
+          <span id="spot">Spot</span><span id="set">Set</span>
         </header>
 
         <Spotify />

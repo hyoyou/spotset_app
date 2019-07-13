@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Playlist from './Playlist';
 import SetlistView from './SetlistView';
 
 export default class Setlist extends Component {
@@ -71,17 +72,20 @@ export default class Setlist extends Component {
     this.setState({ playlistTracks: updatedTracks });
   }
 
-  addToPlaylist = (playlistTracks) => {
-    this.setState({ playlistTracks });
+  addToPlaylist = () => {
+    const { playlistTracks, title } = this.state;
+    this.props.createPlaylist(playlistTracks, title);
   }
 
   render() {
     const { playlistTracks, setlist, title } = this.state;
+    const { isUser, playlistUrl } = this.props;
 
     return (
-      <div className="Setlist">
+      <>
         <SetlistView setlist={setlist} playlistTracks={playlistTracks} title={title} saveTitleHandler={this.saveTitle} handleAddTrack={this.handleAddTrack} handleRemoveTrack={this.handleRemoveTrack} />
-      </div>
+        <Playlist isUser={isUser} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
+      </>
     );
   }
 }

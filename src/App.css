@@ -21,7 +21,8 @@
 }
 
 .App-header {
-  grid-column: 1/1; 
+  grid-column: 1/1;
+  padding-top: 1em;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
@@ -43,7 +44,7 @@
   font-size: 1em;
 }
 
-#Setlist {
+#SetlistView {
   grid-column: 1/2;
   grid-row: 2/4; 
   align-items: center;
@@ -58,8 +59,15 @@
   border-radius: 4px;
 }
 
-.App-footer {
+#Playlist {
   grid-column: 2;
+  grid-row: 3;
+  border: 2px solid #228047;
+  border-radius: 4px;
+}
+
+.App-footer {
+  grid-column: 1/3;
   grid-row: 4;
 }
 
@@ -128,6 +136,28 @@
   font-size: 1em;
 }
 
+#btn-spotify:hover {
+  cursor: pointer;
+}
+
+#btn-playlist {
+  text-align: center;
+  padding: 0.75em 1.5em;
+  margin: 0.75em 1em;
+  box-sizing: border-box;
+  border: 2px solid #228047;
+  border-radius: 4px;
+  background-color: #228047;
+  -webkit-transition-duration: 0.7s; /* Safari */
+  transition-duration: 0.7s;
+  color: white;
+  font-size: 1em;
+}
+
+#btn-playlist:hover {
+  cursor: pointer;
+}
+
 .available {
   text-align: center;
   padding: 10px;
@@ -161,10 +191,10 @@
   padding: 10px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 1px solid red;
+  border: 1px solid #515553;
   border-radius: 4px;
-  background-color: #282c34d9;
-  color: white;
+  background-color: #3d3e3fd9;
+  color: #787c79;
   font-size: 1em;
   pointer-events: none;
   cursor: default;
@@ -172,4 +202,15 @@
 
 .App-link {
   color: #228047;
+}
+
+#spot {
+  font-family: 'Raleway Dots', cursive;
+  font-size: 3em;
+}
+
+#set {
+  font-family: 'Raleway', sans-serif;
+  font-size: 3em;
+  font-weight: 300;
 }
