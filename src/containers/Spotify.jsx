@@ -9,6 +9,7 @@ export default class Spotify extends Component {
   state = {
     isAuthenticated: false,
     accessToken: null,
+    playlistUrl: null,
   }
 
   componentDidMount() {
@@ -40,7 +41,8 @@ export default class Spotify extends Component {
     }
 
     const newPlaylistId = await SpotifyHelper.createAndSavePlaylist(playlist, title);
-    return `https://open.spotify.com/playlist/${newPlaylistId}`;
+    const playlistUrl = `https://open.spotify.com/playlist/${newPlaylistId}`;
+    this.setState({ playlistUrl });
   }
 
   render() {
@@ -49,7 +51,7 @@ export default class Spotify extends Component {
 
     return (
       <>
-        <Setlist httpClient={axios} setlistId={testSetlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} />
+        <Setlist httpClient={axios} setlistId={testSetlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} playlistUrl={this.state.playlistUrl} />
 
         <div id="Spotify">
           {!this.state.isAuthenticated ? <Login /> : <Logout logOutHandler={this.logout} /> }

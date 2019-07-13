@@ -30,10 +30,10 @@ describe('Spotify Component', () => {
     createAndSavePlaylist.mockReturnValue('5');
 
     const wrapper = shallow(<Spotify />);
-    let result = await wrapper.instance().playlistHandler("p", "t");
+    await wrapper.instance().playlistHandler("p", "t");
 
     process.nextTick(() => {
-      expect(result).toEqual(`https://open.spotify.com/playlist/5`);
+      expect(wrapper.state().playlistUrl).toEqual(`https://open.spotify.com/playlist/5`);
 
       done();
     });
