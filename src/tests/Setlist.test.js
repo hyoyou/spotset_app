@@ -78,7 +78,7 @@ describe('Setlist Component', () => {
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().title).toEqual('artistName at venueName on 07-01-2019');
@@ -96,7 +96,7 @@ describe('Setlist Component', () => {
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
@@ -110,7 +110,7 @@ describe('Setlist Component', () => {
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
@@ -120,12 +120,12 @@ describe('Setlist Component', () => {
     });
   });
 
-  it('adds adds a track Uri from playlistTracks state when handleAddTrack is called with the uri', (done) => {
+  it('adds a track Uri from playlistTracks state when handleAddTrack is called with the uri', (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);

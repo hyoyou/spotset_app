@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import App from '../App';
-import Spotify from '../containers/Spotify';
+import Setlists from '../containers/Setlists';
 
 describe('App Component', () => {
   it('renders without crashing', () => {
@@ -10,8 +10,8 @@ describe('App Component', () => {
   });
 
   it('renders child components', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = mount(<App />);
 
-    expect(wrapper.find(Spotify)).toHaveLength(1);
+    expect(wrapper.find(Setlists)).toHaveLength(1);
   });
 });

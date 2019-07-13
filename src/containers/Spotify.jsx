@@ -4,22 +4,28 @@ import axios from 'axios';
 import Login from './Login';
 import Logout from './Logout';
 import Setlist from './Setlist';
+import Setlists from './Setlists';
 
 export default class Spotify extends Component {
   state = {
+    setlistId: null,
     isAuthenticated: false,
     accessToken: null,
     playlistUrl: null,
   }
-
+  
   componentDidMount() {
     const accessToken = SpotifyHelper.checkUrlForSpotifyAccessToken();
     accessToken && this.isValid() ? 
-      this.setState({ isAuthenticated: true, accessToken }) 
-      : 
-      this.setState({ isAuthenticated: false, accessToken: null });
+    this.setState({ isAuthenticated: true, accessToken }) 
+    : 
+    this.setState({ isAuthenticated: false, accessToken: null });
   }
 
+  setSetlist = (setlistId) => {
+    this.setState({ setlistId });
+  }
+  
   isValid = () => {
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
@@ -46,15 +52,20 @@ export default class Spotify extends Component {
   }
 
   render() {
-    const { isAuthenticated } = this.state;
-    const testSetlistId = '3393481d';
+    const { isAuthenticated, setlistId } = this.state;
 
     return (
       <>
-        <Setlist httpClient={axios} setlistId={testSetlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} playlistUrl={this.state.playlistUrl} />
+        { !setlistId &&
+          <Setlists onClick={this.setSetlist} />
+        }
+
+        { setlistId &&
+          <Setlist httpClient={axios} setlistId={setlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} playlistUrl={this.state.playlistUrl} />
+        }
 
         <div id="Spotify">
-          {!this.state.isAuthenticated ? <Login /> : <Logout logOutHandler={this.logout} /> }
+          {!isAuthenticated ? <Login /> : <Logout logOutHandler={this.logout} /> }
         </div>
       </>
     );

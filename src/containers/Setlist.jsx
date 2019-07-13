@@ -15,7 +15,9 @@ export default class Setlist extends Component {
 
   componentDidMount() {
     const { setlistId } = this.props;
-    this.fetchSetlist(setlistId);
+    if (setlistId) {
+      this.fetchSetlist(setlistId);
+    }
   }
 
   fetchSetlist = async (setlistId) => {

@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import * as SpotifyHelper from '../helpers/spotifyHelpers';
 import Spotify from '../containers/Spotify';
@@ -29,11 +29,11 @@ describe('Spotify Component', () => {
     const createAndSavePlaylist = SpotifyHelper.createAndSavePlaylist = jest.fn();
     createAndSavePlaylist.mockReturnValue('5');
 
-    const wrapper = shallow(<Spotify />);
-    await wrapper.instance().playlistHandler("p", "t");
+    const wrapper = mount(<Spotify />);
+    await wrapper.instance().playlistHandler('p', 't');
 
     process.nextTick(() => {
-      expect(wrapper.state().playlistUrl).toEqual(`https://open.spotify.com/playlist/5`);
+      expect(wrapper.state().playlistUrl).toEqual('https://open.spotify.com/playlist/5');
 
       done();
     });

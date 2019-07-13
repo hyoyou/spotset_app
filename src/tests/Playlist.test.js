@@ -5,7 +5,7 @@ import Playlist from '../containers/Playlist';
 
 describe('Playlist Component', () => {
   it('renders a button to create playlist when user is signed in', () => {
-    const wrapper = shallow(<Playlist isUser />);
+    const wrapper = shallow(<Playlist isUser={true} />);
 
     expect(wrapper.exists('#btn-spotify')).toBeTruthy();
     expect(wrapper.text()).not.toContain('Log in to save playlist');
