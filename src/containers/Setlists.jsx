@@ -27,6 +27,8 @@ export default class Setlists extends Component {
           <input id='btn-setlistId' type='submit' value='Display Setlist' onClick={this.onClick} />
         </form>
         Search for your favorite artist and performance from <a href='https://www.setlist.fm/'>Setlist.fm</a>
+        <br />
+        Search for setlists by artist coming soon!
       </div>
     )
   }

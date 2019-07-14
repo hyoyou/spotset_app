@@ -24,15 +24,29 @@ export default class Spotify extends Component {
   }
   
   componentDidMount() {
-    const accessToken = this.spotifyFunctions.checkUrlForSpotifyAccessToken();
+    this.checkForSetlist();
+    const accessToken = this.spotifyFunctions.checkForSpotifyAccessToken();
     accessToken && this.isValid() ? 
     this.setState({ isAuthenticated: true, accessToken }) 
     : 
     this.setState({ isAuthenticated: false, accessToken: null });
   }
 
+  checkForSetlist = () => {
+    const selectedSetlist = localStorage.getItem('setlist_id');
+    if (selectedSetlist) {
+      this.setState({ setlistId: selectedSetlist });
+    }
+  }
+
   setSetlist = (setlistId) => {
+    localStorage.setItem('setlist_id', setlistId);
     this.setState({ setlistId });
+  }
+
+  clearSetlist = () => {
+    localStorage.removeItem('setlist_id');
+    this.setState({ setlistId: null });
   }
   
   isValid = () => {
@@ -43,6 +57,7 @@ export default class Spotify extends Component {
   logout = () => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('setlist_id');
 
     this.setState({ 
       isAuthenticated: false, 
@@ -60,7 +75,6 @@ export default class Spotify extends Component {
     try {
       await this.spotifyFunctions.createAndSavePlaylist(playlist, title)
         .then((response) => {
-          console.log(response)
           playlistUrl = `https://open.spotify.com/playlist/${response}`;
           this.setState({ playlistUrl });
         })
@@ -79,7 +93,14 @@ export default class Spotify extends Component {
         }
 
         { setlistId &&
-          <Setlist httpClient={this.httpClient} setlistId={setlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} playlistUrl={this.state.playlistUrl} />
+          <Setlist 
+            httpClient={this.httpClient}
+            setlistId={setlistId}
+            clearSetlist={this.clearSetlist}
+            isUser={isAuthenticated}
+            createPlaylist={this.playlistHandler}
+            playlistUrl={this.state.playlistUrl}
+          />
         }
 
         <div id="Spotify">

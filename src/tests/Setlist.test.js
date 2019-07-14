@@ -52,7 +52,7 @@ describe('Setlist Component', () => {
     });
   });
 
-  it('fetches error response from the server when server returns an error response', (done) => {
+  it('fetches error response from the server when server returns an error response and renders Error component', (done) => {
     const promise = PromiseFactory.createReject({ message: 'error fetching' });
     const httpClient = axios;
 

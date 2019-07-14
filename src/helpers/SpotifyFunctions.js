@@ -33,10 +33,15 @@ class SpotifyFunctions {
     return hash;
   }
   
-  checkUrlForSpotifyAccessToken = () => {
+  checkForSpotifyAccessToken = () => {
+    const savedToken = localStorage.getItem('access_token');
+    if (savedToken) {
+      return savedToken;
+    };
+
     const hash = this.getHashParams();
-  
     const accessToken = hash.access_token;
+    
     if (!accessToken) {
       return false;
     }
