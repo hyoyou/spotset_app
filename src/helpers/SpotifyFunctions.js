@@ -121,9 +121,14 @@ class SpotifyFunctions {
   }
   
   createAndSavePlaylist = async (playlist, title) => {
-    const userId = await this.getUserId();
-    const playlistId = await this.createPlaylist(userId, title);
-    await this.addTracksToPlaylist(playlistId, playlist);
+    let playlistId;
+    try {
+      const userId = await this.getUserId();
+      const playlistId = await this.createPlaylist(userId, title);
+      await this.addTracksToPlaylist(playlistId, playlist);
+    } catch (error) {
+      return error;
+    }
     return playlistId;
   }
 }

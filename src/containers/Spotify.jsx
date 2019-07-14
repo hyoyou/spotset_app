@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SpotifyFunctions from '../helpers/SpotifyFunctions';
 import HttpClient from '../utilities/HttpClient';
+import Error from './Error';
 import Login from './Login';
 import Logout from './Logout';
 import Setlist from './Setlist';
@@ -18,6 +19,7 @@ export default class Spotify extends Component {
       isAuthenticated: false,
       accessToken: null,
       playlistUrl: null,
+      error: null,
     }
   }
   
@@ -68,7 +70,7 @@ export default class Spotify extends Component {
   }
 
   render() {
-    const { isAuthenticated, setlistId } = this.state;
+    const { error, isAuthenticated, setlistId } = this.state;
 
     return (
       <>
@@ -83,6 +85,10 @@ export default class Spotify extends Component {
         <div id="Spotify">
           {!isAuthenticated ? <Login spotifyFunctions={this.spotifyFunctions} /> : <Logout logOutHandler={this.logout} /> }
         </div>
+
+        { error &&
+          <Error message={error} />
+        }
       </>
     );
   }

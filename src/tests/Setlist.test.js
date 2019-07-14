@@ -3,6 +3,7 @@ import { mount, shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
 import PromiseFactory from './testHelpers/PromiseFactory';
+import Error from '../containers/Error';
 import Setlist from '../containers/Setlist';
 
 jest.mock('axios');
@@ -67,6 +68,7 @@ describe('Setlist Component', () => {
 
     process.nextTick(() => {
       expect(wrapper.state().error).toEqual('error fetching');
+      expect(wrapper.find(Error)).toHaveLength(1);
 
       spy.mockClear();
       done();

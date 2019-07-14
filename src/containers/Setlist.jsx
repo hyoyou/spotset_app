@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Error from './Error';
 import Playlist from './Playlist';
 import SetlistView from './SetlistView';
 
@@ -90,9 +91,7 @@ export default class Setlist extends Component {
         <Playlist isUser={isUser} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
       
         { error &&
-          <div id="error">
-            <p>{error}</p>
-          </div>
+          <Error message={error} />
         }
       </>
     );
