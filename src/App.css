@@ -122,7 +122,7 @@
   transition: 0s
 }
 
-#btn-spotify {
+#btn-spotify, #btn-playlist, #btn-setlists {
   text-align: center;
   padding: 0.75em 1.5em;
   margin: 0.75em 1em;
@@ -136,25 +136,7 @@
   font-size: 1em;
 }
 
-#btn-spotify:hover {
-  cursor: pointer;
-}
-
-#btn-playlist {
-  text-align: center;
-  padding: 0.75em 1.5em;
-  margin: 0.75em 1em;
-  box-sizing: border-box;
-  border: 2px solid #228047;
-  border-radius: 4px;
-  background-color: #228047;
-  -webkit-transition-duration: 0.7s; /* Safari */
-  transition-duration: 0.7s;
-  color: white;
-  font-size: 1em;
-}
-
-#btn-playlist:hover {
+#btn-spotify:hover, #btn-playlist:hover, #btn-setlists:hover {
   cursor: pointer;
 }
 

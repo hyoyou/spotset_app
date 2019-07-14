@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 export default class Playlist extends Component {
   render() {
-    const { createPlaylist, isUser, playlistUrl } = this.props;
+    const { clearSetlist, createPlaylist, isUser, playlistUrl } = this.props;
 
     return (
       <div id="Playlist">
@@ -25,6 +25,8 @@ export default class Playlist extends Component {
 
         <p>Private / Public Playlist Toggle, Coming Soon!</p>
         <p>Tweet Your Playlist, Coming Soon!</p>
+
+        <button id="btn-setlists" onClick={clearSetlist}>Find a Different Setlist</button>
       </div>
     );
   }

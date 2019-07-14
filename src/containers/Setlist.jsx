@@ -83,12 +83,12 @@ export default class Setlist extends Component {
 
   render() {
     const { error, playlistTracks, setlist, title } = this.state;
-    const { isUser, playlistUrl } = this.props;
+    const { clearSetlist, isUser, playlistUrl } = this.props;
 
     return (
       <>
         <SetlistView setlist={setlist} playlistTracks={playlistTracks} title={title} saveTitleHandler={this.saveTitle} handleAddTrack={this.handleAddTrack} handleRemoveTrack={this.handleRemoveTrack} />
-        <Playlist isUser={isUser} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
+        <Playlist isUser={isUser} clearSetlist={clearSetlist} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
       
         { error &&
           <Error message={error} />
