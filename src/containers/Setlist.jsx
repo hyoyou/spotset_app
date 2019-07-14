@@ -23,9 +23,10 @@ export default class Setlist extends Component {
   fetchSetlist = async (setlistId) => {
     const { httpClient } = this.props;
     const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${setlistId}`;
+    const request = { url: url };
 
     try {
-      await httpClient.get(url)
+      await httpClient.get(request)
         .then((response) => {
           let title = this.formatTitle(response.data);
           let playlistTracks = this.getDefaultPlaylistTracks(response.data.tracks);
@@ -80,13 +81,19 @@ export default class Setlist extends Component {
   }
 
   render() {
-    const { playlistTracks, setlist, title } = this.state;
+    const { error, playlistTracks, setlist, title } = this.state;
     const { isUser, playlistUrl } = this.props;
 
     return (
       <>
         <SetlistView setlist={setlist} playlistTracks={playlistTracks} title={title} saveTitleHandler={this.saveTitle} handleAddTrack={this.handleAddTrack} handleRemoveTrack={this.handleRemoveTrack} />
         <Playlist isUser={isUser} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
+      
+        { error &&
+          <div id="error">
+            <p>{error}</p>
+          </div>
+        }
       </>
     );
   }

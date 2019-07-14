@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import * as SpotifyHelper from '../helpers/spotifyHelpers';
-import axios from 'axios';
+import SpotifyFunctions from '../helpers/SpotifyFunctions';
+import HttpClient from '../utilities/HttpClient';
 import Login from './Login';
 import Logout from './Logout';
 import Setlist from './Setlist';
 import Setlists from './Setlists';
 
 export default class Spotify extends Component {
-  state = {
-    setlistId: null,
-    isAuthenticated: false,
-    accessToken: null,
-    playlistUrl: null,
+  constructor(props) {
+    super(props);
+
+    this.httpClient = new HttpClient();
+    this.spotifyFunctions = new SpotifyFunctions(this.httpClient);
+
+    this.state = {
+      setlistId: null,
+      isAuthenticated: false,
+      accessToken: null,
+      playlistUrl: null,
+    }
   }
   
   componentDidMount() {
-    const accessToken = SpotifyHelper.checkUrlForSpotifyAccessToken();
+    const accessToken = this.spotifyFunctions.checkUrlForSpotifyAccessToken();
     accessToken && this.isValid() ? 
     this.setState({ isAuthenticated: true, accessToken }) 
     : 
@@ -46,9 +53,18 @@ export default class Spotify extends Component {
       this.logout();
     }
 
-    const newPlaylistId = await SpotifyHelper.createAndSavePlaylist(playlist, title);
-    const playlistUrl = `https://open.spotify.com/playlist/${newPlaylistId}`;
-    this.setState({ playlistUrl });
+    let playlistUrl;
+
+    try {
+      await this.spotifyFunctions.createAndSavePlaylist(playlist, title)
+        .then((response) => {
+          console.log(response)
+          playlistUrl = `https://open.spotify.com/playlist/${response}`;
+          this.setState({ playlistUrl });
+        })
+    } catch (error) {
+      this.setState({ error });
+    }
   }
 
   render() {
@@ -61,11 +77,11 @@ export default class Spotify extends Component {
         }
 
         { setlistId &&
-          <Setlist httpClient={axios} setlistId={setlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} playlistUrl={this.state.playlistUrl} />
+          <Setlist httpClient={this.httpClient} setlistId={setlistId} isUser={isAuthenticated} createPlaylist={this.playlistHandler} playlistUrl={this.state.playlistUrl} />
         }
 
         <div id="Spotify">
-          {!isAuthenticated ? <Login /> : <Logout logOutHandler={this.logout} /> }
+          {!isAuthenticated ? <Login spotifyFunctions={this.spotifyFunctions} /> : <Logout logOutHandler={this.logout} /> }
         </div>
       </>
     );

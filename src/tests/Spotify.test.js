@@ -1,8 +1,15 @@
 /* eslint-disable no-undef */
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import * as SpotifyHelper from '../helpers/spotifyHelpers';
+import axios from 'axios';
 import Spotify from '../containers/Spotify';
+import SpotifyFunctions from '../helpers/SpotifyFunctions';
+
+jest.mock('axios', () => ({
+  get: jest.fn(),
+  post: jest.fn(),
+}));
+
 
 describe('Spotify Component', () => {
   it('renders the Login component when user is not signed in', () => {
@@ -22,18 +29,12 @@ describe('Spotify Component', () => {
     expect(wrapper.find('Login').length).toEqual(0);
   });
 
-  it('returns the URL of the newly created playlist when playlistHandler called', async (done) => {
-    const isValid = jest.fn();
-    isValid.mockReturnValue(true);
-
-    const createAndSavePlaylist = SpotifyHelper.createAndSavePlaylist = jest.fn();
-    createAndSavePlaylist.mockReturnValue('5');
-
+  it('the URL of the newly created playlist is saved to component state when playlistHandler called', async (done) => {
     const wrapper = mount(<Spotify />);
     await wrapper.instance().playlistHandler('p', 't');
 
     process.nextTick(() => {
-      expect(wrapper.state().playlistUrl).toEqual('https://open.spotify.com/playlist/5');
+      expect(wrapper.state().playlistUrl).toContain('https://open.spotify.com/playlist/');
 
       done();
     });

@@ -41,7 +41,7 @@ describe('Setlist Component', () => {
     const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(url);
+    expect(spy).toHaveBeenCalledWith({ url });
 
     process.nextTick(() => {
       expect(wrapper.state().setlist).toEqual(testProps);
@@ -63,7 +63,7 @@ describe('Setlist Component', () => {
     const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${fakeSetlistId}`;
     const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
-    expect(spy).toHaveBeenCalledWith(url);
+    expect(spy).toHaveBeenCalledWith({ url });
 
     process.nextTick(() => {
       expect(wrapper.state().error).toEqual('error fetching');
