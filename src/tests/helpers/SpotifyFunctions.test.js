@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import axios from 'axios';
-import SpotifyFunctions from '../../helpers/SpotifyFunctions';
 import PromiseFactory from '../testHelpers/PromiseFactory';
+import SpotifyFunctions from '../../helpers/SpotifyFunctions';
 
 jest.mock('axios');
 

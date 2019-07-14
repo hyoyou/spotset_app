@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import React from 'react';
 import { mount } from 'enzyme';
+import React from 'react';
 import Setlists from '../containers/Setlists';
 
 describe('Setlists Component', () => {

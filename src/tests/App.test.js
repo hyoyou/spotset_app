@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import React from 'react';
 import { mount, shallow } from 'enzyme';
+import React from 'react';
 import App from '../App';
 import Setlists from '../containers/Setlists';
 

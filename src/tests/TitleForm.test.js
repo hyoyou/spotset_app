@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
-import React from 'react';
 import { mount } from 'enzyme';
+import React from 'react';
 import TitleForm from '../containers/TitleForm';
 
 describe('TitleForm Component', () => {

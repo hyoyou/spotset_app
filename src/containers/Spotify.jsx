@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import SpotifyFunctions from '../helpers/SpotifyFunctions';
-import HttpClient from '../utilities/HttpClient';
 import Error from './Error';
+import HttpClient from '../utilities/HttpClient';
 import Login from './Login';
 import Logout from './Logout';
 import Setlist from './Setlist';
 import Setlists from './Setlists';
+import SpotifyFunctions from '../helpers/SpotifyFunctions';
 
 export default class Spotify extends Component {
   constructor(props) {
