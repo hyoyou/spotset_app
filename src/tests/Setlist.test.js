@@ -2,6 +2,7 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
+import Error from '../containers/Error';
 import PromiseFactory from './testHelpers/PromiseFactory';
 import Setlist from '../containers/Setlist';
 
@@ -41,7 +42,7 @@ describe('Setlist Component', () => {
     const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
     expect(spy).toHaveBeenCalledTimes(1);
-    expect(spy).toHaveBeenCalledWith(url);
+    expect(spy).toHaveBeenCalledWith({ url });
 
     process.nextTick(() => {
       expect(wrapper.state().setlist).toEqual(testProps);
@@ -51,7 +52,7 @@ describe('Setlist Component', () => {
     });
   });
 
-  it('fetches error response from the server when server returns an error response', (done) => {
+  it('fetches error response from the server when server returns an error response and renders Error component', (done) => {
     const promise = PromiseFactory.createReject({ message: 'error fetching' });
     const httpClient = axios;
 
@@ -63,10 +64,11 @@ describe('Setlist Component', () => {
     const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${fakeSetlistId}`;
     const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
 
-    expect(spy).toHaveBeenCalledWith(url);
+    expect(spy).toHaveBeenCalledWith({ url });
 
     process.nextTick(() => {
       expect(wrapper.state().error).toEqual('error fetching');
+      expect(wrapper.find(Error)).toHaveLength(1);
 
       spy.mockClear();
       done();
@@ -78,7 +80,7 @@ describe('Setlist Component', () => {
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().title).toEqual('artistName at venueName on 07-01-2019');
@@ -96,7 +98,7 @@ describe('Setlist Component', () => {
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
@@ -110,7 +112,7 @@ describe('Setlist Component', () => {
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);
@@ -120,12 +122,12 @@ describe('Setlist Component', () => {
     });
   });
 
-  it('adds adds a track Uri from playlistTracks state when handleAddTrack is called with the uri', (done) => {
+  it('adds a track Uri from playlistTracks state when handleAddTrack is called with the uri', (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
 
-    const wrapper = mount(<Setlist httpClient={httpClient} />);
+    const wrapper = mount(<Setlist httpClient={httpClient} setlistId='testId' />);
 
     process.nextTick(() => {
       expect(wrapper.state().playlistTracks).toEqual(['spotify:track:sampleUri1', 'spotify:track:sampleUri2', 'spotify:track:sampleUri3']);

@@ -1,6 +1,6 @@
 import Artist from '../../models/Artist';
-import Sets from '../../models/Sets';
 import Setlist from '../../models/Setlist';
+import Sets from '../../models/Sets';
 import Song from '../../models/Song';
 import SongSet from '../../models/SongSet';
 import Venue from '../../models/Venue';

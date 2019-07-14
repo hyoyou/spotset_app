@@ -17,11 +17,10 @@ export default class TitleForm extends Component {
     this.setState({
       newTitle: event.target.value
     })
-  }
 
-  onClick = (event) => {
-    event.preventDefault();
-    this.props.saveTitleHandler(this.state.newTitle);
+    if (this.props.saveTitleHandler) {
+      this.props.saveTitleHandler(this.state.newTitle);
+    }
   }
 
   render() {
@@ -29,9 +28,8 @@ export default class TitleForm extends Component {
 
     return (
       <div className="App-field">
-        <form onSubmit={ this.onClick }>
+        <form>
           <input id='title' name='newTitle' type='text' value={ newTitle } onChange={ this.onInput } />
-          <input id='btn-title' type='submit' value='Update Title' />
         </form>
       </div>
     )
