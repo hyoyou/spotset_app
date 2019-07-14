@@ -106,29 +106,28 @@ class SpotifyFunctions {
     };
     const request = { url: url, data: data, headers: headers };
 
-    let playlistUrl;
-  
+    let snapshotId;
+
     try {
-      await this.httpClient.post(request)
-        .then((response) => {
-          playlistUrl = response.data.url
-        });
+      snapshotId = await this.httpClient.post(request);
     } catch (error) {
       return error;
     }
 
-    return playlistUrl;
+    return snapshotId;
   }
   
   createAndSavePlaylist = async (playlist, title) => {
     let playlistId;
+
     try {
       const userId = await this.getUserId();
-      const playlistId = await this.createPlaylist(userId, title);
+      playlistId = await this.createPlaylist(userId, title);
       await this.addTracksToPlaylist(playlistId, playlist);
     } catch (error) {
       return error;
     }
+
     return playlistId;
   }
 }

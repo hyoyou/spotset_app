@@ -67,7 +67,7 @@ describe('Spotify Helper Functions', () => {
 
     const result = await spotifyFunctions.addTracksToPlaylist('playlistId', 'title');
 
-    expect(result).toEqual('tracksAdded');
+    expect(result).toEqual({ data: { url: 'tracksAdded' } });
     done();
   });
 
