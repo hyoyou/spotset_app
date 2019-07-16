@@ -7,7 +7,7 @@ import Setlist from './Setlist';
 import Setlists from './Setlists';
 import SpotifyFunctions from '../helpers/SpotifyFunctions';
 
-export default class Spotify extends Component {
+export default class SpotSet extends Component {
   constructor(props) {
     super(props);
 
@@ -24,9 +24,14 @@ export default class Spotify extends Component {
   }
   
   componentDidMount() {
+    if (!this.isValid()) {
+      this.logout();
+    }
+
     this.checkForSetlist();
     const accessToken = this.spotifyFunctions.checkForSpotifyAccessToken();
-    accessToken && this.isValid() ? 
+    
+    accessToken ? 
     this.setState({ isAuthenticated: true, accessToken }) 
     : 
     this.setState({ isAuthenticated: false, accessToken: null });
@@ -34,6 +39,7 @@ export default class Spotify extends Component {
 
   checkForSetlist = () => {
     const selectedSetlist = localStorage.getItem('setlist_id');
+
     if (selectedSetlist) {
       this.setState({ setlistId: selectedSetlist });
     }
@@ -46,7 +52,11 @@ export default class Spotify extends Component {
 
   clearSetlist = () => {
     localStorage.removeItem('setlist_id');
-    this.setState({ setlistId: null });
+    this.setState({ 
+      setlistId: null,
+      playlistUrl: null,
+      error: null
+    });
   }
   
   isValid = () => {
@@ -71,16 +81,14 @@ export default class Spotify extends Component {
     }
 
     let playlistUrl;
-
-    try {
-      await this.spotifyFunctions.createAndSavePlaylist(playlist, title)
-        .then((response) => {
-          playlistUrl = `https://open.spotify.com/playlist/${response}`;
-          this.setState({ playlistUrl });
-        })
-    } catch (error) {
-      this.setState({ error });
-    }
+    await this.spotifyFunctions.createAndSavePlaylist(playlist, title)
+    .then((response) => {
+        playlistUrl = `https://open.spotify.com/playlist/${response}`;
+        this.setState({ playlistUrl });
+      })
+      .catch(error => {
+        this.setState({ error: error.message })
+      });
   }
 
   render() {

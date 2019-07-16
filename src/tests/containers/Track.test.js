@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { shallow } from 'enzyme';
 import React from 'react';
-import Track from '../containers/Track';
+import Track from '../../containers/Track';
 
 describe('Track Component', () => {
   it('sets addedToList to true when addTrack is called', (done) => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import SetlistView from '../containers/SetlistView';
+import SetlistView from '../../containers/SetlistView';
 
 describe('SetlistView Component', () => {
   it('renders without crashing', () => {

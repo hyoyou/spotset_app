@@ -69,7 +69,7 @@ class SpotifyFunctions {
           id = response.data.id;
         });
     } catch (error) {
-      return error;
+      throw new Error('Could not get the username.')
     }
   
     return id;
@@ -88,14 +88,13 @@ class SpotifyFunctions {
 
     let id;
   
-    try {
-      await this.httpClient.post(request)
-        .then((response) => {
-          id = response.data.id;
-        });
-    } catch (error) {
-      return error;
-    }
+    await this.httpClient.post(request)
+      .then((response) => {
+        id = response.data.id;
+      })
+      .catch((error) => {
+        throw new Error('Could not create a new playlist.')
+      });
   
     return id;
   }
@@ -113,24 +112,37 @@ class SpotifyFunctions {
 
     let snapshotId;
 
-    try {
-      snapshotId = await this.httpClient.post(request);
-    } catch (error) {
-      return error;
-    }
+    await this.httpClient.post(request)
+    .then((response) => {
+      snapshotId = response.data.url;
+    })
+    .catch((error) => {
+      throw new Error('Could not add tracks to playlist.')
+    });
 
     return snapshotId;
   }
   
   createAndSavePlaylist = async (playlist, title) => {
+    let userId;
     let playlistId;
 
     try {
-      const userId = await this.getUserId();
-      playlistId = await this.createPlaylist(userId, title);
-      await this.addTracksToPlaylist(playlistId, playlist);
+      userId = await this.getUserId()
     } catch (error) {
-      return error;
+      throw new Error('Could not get the username.')
+    }
+
+    try {
+      playlistId = await this.createPlaylist(userId, title);
+    } catch (error) {
+      throw new Error('Could not create a new playlist.')
+    }
+
+    try {
+      await this.addTracksToPlaylist(playlistId, playlist)
+    } catch (error) {
+      throw new Error('Could not add tracks to playlist.')
     }
 
     return playlistId;
