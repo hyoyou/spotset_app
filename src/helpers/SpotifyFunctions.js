@@ -52,14 +52,26 @@ class SpotifyFunctions {
     localStorage.setItem('expires_at', expiresAt);
     return accessToken;
   }
+
+  formatBody = (key, value) => {
+    return JSON.stringify({ key : value });
+  }
+
+  formatHeader = () => {
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+    };
+  }
+  
+  formatRequest = (url, headers, data = null) => {
+    return data ? { url: url, data: data, headers: headers } : { url: url, headers: headers };
+  }
   
   getUserId = async () => {
     const url = 'https://api.spotify.com/v1/me';
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    };
-    const request = { url: url, headers: headers };
+    const headers = this.formatHeader();
+    const request = this.formatRequest(url, headers);
 
     let id;
 
@@ -77,14 +89,9 @@ class SpotifyFunctions {
   
   createPlaylist = async (userId, title) => {
     const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
-    const data = JSON.stringify({
-      'name': `${title}` 
-    });
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    };
-    const request = { url: url, data: data, headers: headers };
+    const data = JSON.stringify({ 'name': title });
+    const headers = this.formatHeader();
+    const request = this.formatRequest(url, headers, data);
 
     let id;
   
@@ -101,14 +108,9 @@ class SpotifyFunctions {
   
   addTracksToPlaylist = async (playlistId, playlist) => {
     const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
-    const data = JSON.stringify({
-      uris: playlist,
-    });
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-    };
-    const request = { url: url, data: data, headers: headers };
+    const data = JSON.stringify({ 'uris': playlist });
+    const headers = this.formatHeader();
+    const request = this.formatRequest(url, headers, data);
 
     let snapshotId;
 
@@ -126,7 +128,7 @@ class SpotifyFunctions {
   createAndSavePlaylist = async (playlist, title) => {
     let userId;
     let playlistId;
-
+    
     try {
       userId = await this.getUserId()
     } catch (error) {
