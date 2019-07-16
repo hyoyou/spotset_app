@@ -68,23 +68,23 @@ class SpotifyFunctions {
     return data ? { url: url, data: data, headers: headers } : { url: url, headers: headers };
   }
   
-  getUserId = async () => {
+  getUsername = async () => {
     const url = 'https://api.spotify.com/v1/me';
     const headers = this.formatHeader();
     const request = this.formatRequest(url, headers);
 
-    let id;
+    let username;
 
     try {
       await this.httpClient.get(request)
         .then((response) => {
-          id = response.data.id;
+          username = response.data.id;
         });
     } catch (error) {
       throw new Error('Could not get the username.')
     }
   
-    return id;
+    return username;
   }
   
   createPlaylist = async (userId, title) => {
@@ -126,17 +126,17 @@ class SpotifyFunctions {
   }
   
   createAndSavePlaylist = async (playlist, title) => {
-    let userId;
+    let username;
     let playlistId;
-    
+
     try {
-      userId = await this.getUserId()
+      username = await this.getUsername()
     } catch (error) {
       throw new Error('Could not get the username.')
     }
 
     try {
-      playlistId = await this.createPlaylist(userId, title);
+      playlistId = await this.createPlaylist(username, title);
     } catch (error) {
       throw new Error('Could not create a new playlist.')
     }

@@ -6,14 +6,14 @@ import SpotifyFunctions from '../../helpers/SpotifyFunctions';
 jest.mock('axios');
 
 describe('Spotify Helper Functions', () => {
-  it('gets the Spotify userId of logged in user', async (done) => {
+  it('gets the Spotify username of logged in user', async (done) => {
     const promise = PromiseFactory.createResolve({ data: { id: 'testId' } });
     const httpClient = axios;
     const spotifyFunctions = new SpotifyFunctions(httpClient);
 
     httpClient.get.mockReturnValue(promise);
 
-    const result = await spotifyFunctions.getUserId();
+    const result = await spotifyFunctions.getUsername();
 
     expect(result).toEqual('testId');
     done();
@@ -27,7 +27,7 @@ describe('Spotify Helper Functions', () => {
     httpClient.get.mockReturnValue(promise);
 
     try {
-      await spotifyFunctions.getUserId();
+      await spotifyFunctions.getUsername();
     } catch (e) {
       expect(e.message).toBe('Could not get the username.');
     }
