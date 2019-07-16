@@ -20,15 +20,17 @@ describe('Spotify Helper Functions', () => {
   });
 
   it('returns error if there is an error grabbing Spotify userId of logged in user', async (done) => {
-    const promise = PromiseFactory.createReject({ error: 'user not found' });
+    const promise = PromiseFactory.createReject({ data: { message: 'user not found' } });
     const httpClient = axios;
     const spotifyFunctions = new SpotifyFunctions(httpClient);
 
     httpClient.get.mockReturnValue(promise);
 
-    const result = await spotifyFunctions.getUserId();
-
-    expect(result).toEqual({ error: 'user not found' });
+    try {
+      await spotifyFunctions.getUserId();
+    } catch (e) {
+      expect(e.message).toBe('Could not get the username.');
+    }
     done();
   });
 
@@ -46,15 +48,17 @@ describe('Spotify Helper Functions', () => {
   });
 
   it('returns error if there is an error grabbing Spotify playlistId of newly created playlist', async (done) => {
-    const promise = PromiseFactory.createReject({ error: 'playlist not created' });
+    const promise = PromiseFactory.createReject({ response: { data: { message: 'playlist not created' } } });
     const httpClient = axios;
     const spotifyFunctions = new SpotifyFunctions(httpClient);
 
     httpClient.post.mockReturnValue(promise);
 
-    const result = await spotifyFunctions.createPlaylist('userId', 'title');
-
-    expect(result).toEqual({ error: 'playlist not created' });
+    try {
+      await spotifyFunctions.createPlaylist('userId', 'title');
+    } catch (e) {
+      expect(e.message).toBe('Could not create a new playlist.');
+    }
     done();
   });
 
@@ -67,20 +71,22 @@ describe('Spotify Helper Functions', () => {
 
     const result = await spotifyFunctions.addTracksToPlaylist('playlistId', 'title');
 
-    expect(result).toEqual({ data: { url: 'tracksAdded' } });
+    expect(result).toEqual('tracksAdded');
     done();
   });
 
   it('returns error if there is an error adding tracks to newly created playlist', async (done) => {
-    const promise = PromiseFactory.createReject({ error: 'tracks not added' });
+    const promise = PromiseFactory.createReject({ response: { data: { message: 'tracks not added' } } });
     const httpClient = axios;
     const spotifyFunctions = new SpotifyFunctions(httpClient);
 
     httpClient.post.mockReturnValue(promise);
 
-    const result = await spotifyFunctions.addTracksToPlaylist('playlistId', 'title');
-
-    expect(result).toEqual({ error: 'tracks not added' });
+    try {
+      await spotifyFunctions.addTracksToPlaylist('playlistId', 'title');
+    } catch (e) {
+      expect(e.message).toBe('Could not add tracks to playlist.');
+    }
     done();
   });
 });

@@ -26,21 +26,20 @@ export default class Setlist extends Component {
     const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${setlistId}`;
     const request = { url: url };
 
-    try {
-      await httpClient.get(request)
-        .then((response) => {
-          let title = this.formatTitle(response.data);
-          let playlistTracks = this.getDefaultPlaylistTracks(response.data.tracks);
-          
-          this.setState({ 
-            setlist: response.data,
-            title,
-            playlistTracks
-          });
+    await httpClient.get(request)
+      .then(response => {
+        let title = this.formatTitle(response.data);
+        let playlistTracks = this.getDefaultPlaylistTracks(response.data.tracks);
+        
+        this.setState({ 
+          setlist: response.data,
+          title,
+          playlistTracks
         });
-    } catch (error) {
-      this.setState({ error: error.message });
-    }
+      })
+      .catch(error => {
+        this.setState({ error: error.response.data.message });
+      })
   }
 
   formatTitle = (setlist) => {
