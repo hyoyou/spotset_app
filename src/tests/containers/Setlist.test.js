@@ -2,9 +2,9 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
-import Error from '../containers/Error';
-import PromiseFactory from './testHelpers/PromiseFactory';
-import Setlist from '../containers/Setlist';
+import Error from '../../containers/Error';
+import PromiseFactory from '../testHelpers/PromiseFactory';
+import Setlist from '../../containers/Setlist';
 
 jest.mock('axios');
 
@@ -53,7 +53,7 @@ describe('Setlist Component', () => {
   });
 
   it('fetches error response from the server when server returns an error response and renders Error component', (done) => {
-    const promise = PromiseFactory.createReject({ message: 'error fetching' });
+    const promise = PromiseFactory.createReject({ response: { data: { message: 'error fetching' } } });
     const httpClient = axios;
 
     httpClient.get.mockReturnValue(promise);

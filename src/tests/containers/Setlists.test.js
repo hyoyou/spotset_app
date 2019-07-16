@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { mount } from 'enzyme';
 import React from 'react';
-import Setlists from '../containers/Setlists';
+import Setlists from '../../containers/Setlists';
 
 describe('Setlists Component', () => {
   it('renders an input field for the setlistId that updates the state when changed', () => {

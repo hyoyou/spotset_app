@@ -1,15 +1,9 @@
 /* eslint-disable no-undef */
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import React from 'react';
-import axios from 'axios';
-import Spotify from '../containers/Spotify';
-import SpotifyFunctions from '../helpers/SpotifyFunctions';
-
-jest.mock('axios', () => ({
-  get: jest.fn(),
-  post: jest.fn(),
-}));
-
+import MockSpotifyErrorFunctions from '../mocks/MockSpotifyErrorFunctions';
+import MockSpotifySuccessFunctions from '../mocks/MockSpotifySuccessFunctions';
+import Spotify from '../../containers/Spotify';
 
 describe('Spotify Component', () => {
   it('renders the Login component when user is not signed in', () => {
@@ -30,11 +24,26 @@ describe('Spotify Component', () => {
   });
 
   it('the URL of the newly created playlist is saved to component state when playlistHandler called', async (done) => {
-    const wrapper = mount(<Spotify />);
-    await wrapper.instance().playlistHandler('p', 't');
+    const wrapper = shallow(<Spotify />);
+
+    wrapper.instance().spotifyFunctions = new MockSpotifySuccessFunctions();
+    await wrapper.instance().playlistHandler(5, 'title');
 
     process.nextTick(() => {
-      expect(wrapper.state().playlistUrl).toContain('https://open.spotify.com/playlist/');
+      expect(wrapper.state().playlistUrl).toEqual('https://open.spotify.com/playlist/5');
+
+      done();
+    });
+  });
+
+  it('returns an error when playlistHandler ', async (done) => {
+    const wrapper = shallow(<Spotify />);
+
+    wrapper.instance().spotifyFunctions = new MockSpotifyErrorFunctions();
+    await wrapper.instance().playlistHandler(5, 'title');
+
+    process.nextTick(() => {
+      expect(wrapper.state().error).toEqual('Could not get the username.');
 
       done();
     });

@@ -1,8 +1,8 @@
 /* eslint-disable no-undef */
 import { mount } from 'enzyme';
 import React from 'react';
-import Login from '../containers/Login';
-import SpotifyFunctions from '../helpers/SpotifyFunctions';
+import Login from '../../containers/Login';
+import SpotifyFunctions from '../../helpers/SpotifyFunctions';
 
 describe('Login Component', () => {
   it('Log In button calls the function to get Spotify log in page URL when clicked', () => {

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { shallow } from 'enzyme';
 import React from 'react';
-import Playlist from '../containers/Playlist';
+import Playlist from '../../containers/Playlist';
 
 describe('Playlist Component', () => {
   it('renders a button to create playlist when user is signed in', () => {
