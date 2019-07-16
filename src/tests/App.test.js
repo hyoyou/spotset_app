@@ -2,7 +2,7 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import App from '../App';
-import Setlists from '../containers/Setlists';
+import SpotSet from '../containers/SpotSet';
 
 describe('App Component', () => {
   it('renders without crashing', () => {
@@ -12,6 +12,6 @@ describe('App Component', () => {
   it('renders child components', () => {
     const wrapper = mount(<App />);
 
-    expect(wrapper.find(Setlists)).toHaveLength(1);
+    expect(wrapper.find(SpotSet)).toHaveLength(1);
   });
 });

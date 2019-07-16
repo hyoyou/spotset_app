@@ -3,11 +3,11 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import MockSpotifyErrorFunctions from '../mocks/MockSpotifyErrorFunctions';
 import MockSpotifySuccessFunctions from '../mocks/MockSpotifySuccessFunctions';
-import Spotify from '../../containers/Spotify';
+import SpotSet from '../../containers/SpotSet';
 
-describe('Spotify Component', () => {
+describe('SpotSet Component', () => {
   it('renders the Login component when user is not signed in', () => {
-    const wrapper = shallow(<Spotify />);
+    const wrapper = shallow(<SpotSet />);
 
     expect(wrapper.instance().state.isAuthenticated).toBeFalsy();
     expect(wrapper.find('Login').length).toEqual(1);
@@ -15,7 +15,7 @@ describe('Spotify Component', () => {
   });
 
   it('renders the Logout component when user is signed in', () => {
-    const wrapper = shallow(<Spotify />);
+    const wrapper = shallow(<SpotSet />);
     wrapper.setState({ isAuthenticated: true });
 
     expect(wrapper.instance().state.isAuthenticated).toBeTruthy();
@@ -24,7 +24,7 @@ describe('Spotify Component', () => {
   });
 
   it('the URL of the newly created playlist is saved to component state when playlistHandler called', async (done) => {
-    const wrapper = shallow(<Spotify />);
+    const wrapper = shallow(<SpotSet />);
 
     wrapper.instance().spotifyFunctions = new MockSpotifySuccessFunctions();
     await wrapper.instance().playlistHandler(5, 'title');
@@ -37,7 +37,7 @@ describe('Spotify Component', () => {
   });
 
   it('returns an error when playlistHandler ', async (done) => {
-    const wrapper = shallow(<Spotify />);
+    const wrapper = shallow(<SpotSet />);
 
     wrapper.instance().spotifyFunctions = new MockSpotifyErrorFunctions();
     await wrapper.instance().playlistHandler(5, 'title');

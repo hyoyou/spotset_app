@@ -2,7 +2,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import './App.css';
-import Spotify from './containers/Spotify';
+import SpotSet from './containers/SpotSet';
 
 export default class App extends Component {
   render() {
@@ -12,10 +12,10 @@ export default class App extends Component {
           <span id="spot">Spot</span><span id="set">Set</span>
         </header>
 
-        <Spotify />
+        <SpotSet />
 
         <footer className="App-footer">
-          <h4>Created with APIs provided by setify.fm and Spotify</h4>
+          <h4>Created with APIs provided by setlist.fm and Spotify</h4>
         </footer>
       </div>
     );

@@ -7,7 +7,7 @@ import Setlist from './Setlist';
 import Setlists from './Setlists';
 import SpotifyFunctions from '../helpers/SpotifyFunctions';
 
-export default class Spotify extends Component {
+export default class SpotSet extends Component {
   constructor(props) {
     super(props);
 
@@ -52,7 +52,11 @@ export default class Spotify extends Component {
 
   clearSetlist = () => {
     localStorage.removeItem('setlist_id');
-    this.setState({ setlistId: null });
+    this.setState({ 
+      setlistId: null,
+      playlistUrl: null,
+      error: null
+    });
   }
   
   isValid = () => {
