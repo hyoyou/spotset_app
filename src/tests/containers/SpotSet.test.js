@@ -23,7 +23,7 @@ describe('SpotSet Component', () => {
     expect(wrapper.find('Login').length).toEqual(0);
   });
 
-  it('the URL of the newly created playlist is saved to component state when playlistHandler called', async (done) => {
+  it('formats the URL of the newly created playlist with the result from a successful call to create playlist', async (done) => {
     const wrapper = shallow(<SpotSet />);
 
     wrapper.instance().spotifyFunctions = new MockSpotifySuccessFunctions();
@@ -36,7 +36,7 @@ describe('SpotSet Component', () => {
     });
   });
 
-  it('returns an error when playlistHandler ', async (done) => {
+  it('returns an error when call to create a playlist results in an error', async (done) => {
     const wrapper = shallow(<SpotSet />);
 
     wrapper.instance().spotifyFunctions = new MockSpotifyErrorFunctions();

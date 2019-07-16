@@ -126,27 +126,10 @@ class SpotifyFunctions {
   }
   
   createAndSavePlaylist = async (playlist, title) => {
-    let username;
-    let playlistId;
-
-    try {
-      username = await this.getUsername()
-    } catch (error) {
-      throw new Error('Could not get the username.')
-    }
-
-    try {
-      playlistId = await this.createPlaylist(username, title);
-    } catch (error) {
-      throw new Error('Could not create a new playlist.')
-    }
-
-    try {
-      await this.addTracksToPlaylist(playlistId, playlist)
-    } catch (error) {
-      throw new Error('Could not add tracks to playlist.')
-    }
-
+    const username = await this.getUsername();
+    const playlistId = await this.createPlaylist(username, title);
+    await this.addTracksToPlaylist(playlistId, playlist)
+   
     return playlistId;
   }
 }

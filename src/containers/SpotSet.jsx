@@ -24,10 +24,6 @@ export default class SpotSet extends Component {
   }
   
   componentDidMount() {
-    if (!this.isValid()) {
-      this.logout();
-    }
-
     this.checkForSetlist();
     const accessToken = this.spotifyFunctions.checkForSpotifyAccessToken();
     
@@ -80,10 +76,9 @@ export default class SpotSet extends Component {
       this.logout();
     }
 
-    let playlistUrl;
-    await this.spotifyFunctions.createAndSavePlaylist(playlist, title)
-    .then((response) => {
-        playlistUrl = `https://open.spotify.com/playlist/${response}`;
+    this.spotifyFunctions.createAndSavePlaylist(playlist, title)
+      .then((response) => {
+        const playlistUrl = `https://open.spotify.com/playlist/${response}`;
         this.setState({ playlistUrl });
       })
       .catch(error => {
