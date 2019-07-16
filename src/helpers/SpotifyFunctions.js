@@ -69,7 +69,7 @@ class SpotifyFunctions {
           id = response.data.id;
         });
     } catch (error) {
-      throw new Error("Could not get the username.")
+      throw new Error('Could not get the username.')
     }
   
     return id;
@@ -93,7 +93,7 @@ class SpotifyFunctions {
         id = response.data.id;
       })
       .catch((error) => {
-        throw new Error("Could not create a new playlist.")
+        throw new Error('Could not create a new playlist.')
       });
   
     return id;
@@ -117,7 +117,7 @@ class SpotifyFunctions {
       snapshotId = response.data.url;
     })
     .catch((error) => {
-      throw new Error("Could not add tracks to playlist.")
+      throw new Error('Could not add tracks to playlist.')
     });
 
     return snapshotId;
@@ -130,19 +130,19 @@ class SpotifyFunctions {
     try {
       userId = await this.getUserId()
     } catch (error) {
-      throw new Error("Could not get the username.")
+      throw new Error('Could not get the username.')
     }
 
     try {
       playlistId = await this.createPlaylist(userId, title);
     } catch (error) {
-      throw new Error("Could not create a new playlist.")
+      throw new Error('Could not create a new playlist.')
     }
 
     try {
       await this.addTracksToPlaylist(playlistId, playlist)
     } catch (error) {
-      throw new Error("Could not add tracks to playlist.")
+      throw new Error('Could not add tracks to playlist.')
     }
 
     return playlistId;
