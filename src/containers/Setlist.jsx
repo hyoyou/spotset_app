@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Error from './Error';
 import Playlist from './Playlist';
 import SetlistView from './SetlistView';
@@ -10,7 +12,8 @@ export default class Setlist extends Component {
       setlist: '',
       error: '',
       title: '',
-      playlistTracks: []
+      playlistTracks: [],
+      isLoading: true
     };
   }
 
@@ -34,11 +37,16 @@ export default class Setlist extends Component {
         this.setState({ 
           setlist: response.data,
           title,
-          playlistTracks
+          playlistTracks,
+          isLoading: false,
         });
       })
       .catch(error => {
-        this.setState({ error: error.response.data.message });
+        if (error.response) {
+          this.setState({ error: error.response.data.message });
+        } else {
+          this.setState({ error: 'There was an error connecting to the server'});
+        }
       })
   }
 
@@ -81,11 +89,14 @@ export default class Setlist extends Component {
   }
 
   render() {
-    const { error, playlistTracks, setlist, title } = this.state;
+    const { error, isLoading, playlistTracks, setlist, title } = this.state;
     const { clearSetlist, isUser, playlistUrl } = this.props;
 
     return (
       <>
+        { isLoading &&
+          <FontAwesomeIcon id='icon-spinner' icon={faSpinner} size="3x" pulse />
+        }
         <SetlistView setlist={setlist} playlistTracks={playlistTracks} title={title} saveTitleHandler={this.saveTitle} handleAddTrack={this.handleAddTrack} handleRemoveTrack={this.handleRemoveTrack} />
         <Playlist isUser={isUser} clearSetlist={clearSetlist} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
       

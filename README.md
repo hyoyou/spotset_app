@@ -1,68 +1,53 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# SpotSet Client [![TravisCI](https://travis-ci.com/hyoyou/spotset_app.svg?branch=master)]
 
-## Available Scripts
+## Prerequisites
+- yarn to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
 
-In the project directory, you can run:
+## Setup
+* Clone this repo and `cd` into directory
+* Run the following command to install dependencies:
 
-### `npm start`
+```
+$ yarn
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Running the App
+* To run the app on development server, use the following command (make sure the [server](https://github.com/hyoyou/spotset_api) is already running):
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+$ yarn start
+```
 
-### `npm test`
+then navigate to http://localhost:3000/
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Running the Tests
+* To run unit tests, use the following command:
 
-### `npm run build`
+```
+$ yarn test
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Use The App
+If server is already running, navigating to http://localhost:3000/ should take you to the page below:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+<p align="center">
+  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-17+at+11.21.44+AM.png"s>
+</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Find a setlist that you're interested in, from [setlist.fm](https://www.setlist.fm), and grab the setlist ID from the URL. It is an 8-character alphanumeric combination just before the `.html` at the end.
 
-### `npm run eject`
+<p align="center">
+  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-17+at+10.54.40+AM.png">
+</p>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Once you click on `Display Setlist` with a valid setlist ID, you should see the setlist with the availability of the songs on Spotify.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Please login to Spotify at this point if you want any customizations on your playlist.**
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Songs that are unavailable are greyed out. You can click on each song to remove/add before saving to your playlist. Note: Removing and then adding back the same track will not preserve order.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Click on `Save as Playlist` to save. Upon success, you should see the button has changed to `Go to Playlist`. Clicking this button will take you to your new playlist :) Enjoy!
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<p align="center">
+  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-17+at+11.26.17+AM.png">
+</p>
