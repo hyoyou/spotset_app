@@ -42,7 +42,11 @@ export default class Setlist extends Component {
         });
       })
       .catch(error => {
-        this.setState({ error: error.response.data.message });
+        if (error.response) {
+          this.setState({ error: error.response.data.message });
+        } else {
+          this.setState({ error: 'There was an error connecting to the server'});
+        }
       })
   }
 

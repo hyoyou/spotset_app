@@ -75,6 +75,25 @@ describe('Setlist Component', () => {
     });
   });
 
+  it('displays error response when server is down and renders Error component', (done) => {
+    const promise = PromiseFactory.createReject('error');
+    const httpClient = axios;
+
+    httpClient.get.mockReturnValue(promise);
+    const spy = jest.spyOn(httpClient, 'get');
+
+    const fakeSetlistId = 'setlistId';
+    const wrapper = shallow(<Setlist httpClient={httpClient} setlistId={fakeSetlistId} />);
+
+    process.nextTick(() => {
+      expect(wrapper.state().error).toEqual('There was an error connecting to the server');
+      expect(wrapper.find(Error)).toHaveLength(1);
+
+      spy.mockClear();
+      done();
+    });
+  });
+
   it('updates the title when saveTitle is called with the title of the playlist', (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
