@@ -25,7 +25,7 @@ export default class Playlist extends Component {
               Your playlist has been created
             </h3>
             <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
-              <button id="btn-playlist">Go To Playlist</button>
+              <button id="btn-playlist">Go to Playlist</button>
             </a>
           </>
         )}
