@@ -13,6 +13,8 @@
   grid-row-gap: 0.5em;
   justify-items: stretch;
   align-items: stretch;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
 }
 
 .App-logo {
@@ -199,12 +201,12 @@
 
 #spot {
   font-family: 'Raleway Dots', cursive;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 #set {
   font-family: 'Raleway', sans-serif;
-  font-size: 3em;
+  font-size: 2.5em;
   font-weight: 300;
 }
 
@@ -225,4 +227,13 @@
 
 #coming-soon {
   list-style-type: none;
+}
+
+#instructions {
+  text-align: left;
+  margin-left: 5%;
+}
+
+img {
+  width: 80%;
 }
