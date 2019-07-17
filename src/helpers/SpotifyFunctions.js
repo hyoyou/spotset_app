@@ -1,3 +1,5 @@
+import * as Constants from '../constants/ApiConstants';
+
 class SpotifyFunctions {
   constructor(httpClient) {
     this.httpClient = httpClient;
@@ -6,15 +8,10 @@ class SpotifyFunctions {
   getRedirectUrl = () => {
     const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID;
     const REDIRECT_URI = process.env.REACT_APP_SPOTIFY_DEV_REDIRECT_URI;
-    const scopes = [
-      'playlist-modify-public',
-      'playlist-modify-private',
-    ];
+    const scopes = Constants.SPOTIFY_SCOPES;
   
-    return `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID
-    }&redirect_uri=${encodeURIComponent(REDIRECT_URI)
-    }&response_type=token`
-    + `&scope=${encodeURIComponent(scopes.join(' '))}`;
+    return Constants.SPOTIFY_AUTH_URL + CLIENT_ID + Constants.SPOTIFY_AUTH_REDIRECT + encodeURIComponent(REDIRECT_URI)
+  + Constants.SPOTIFY_AUTH_TYPE + encodeURIComponent(scopes.join(' '))
   }
   
   getHashParams = () => {
@@ -69,7 +66,7 @@ class SpotifyFunctions {
   }
   
   getUsername = async () => {
-    const url = 'https://api.spotify.com/v1/me';
+    const url = Constants.SPOTIFY_USER_URL;
     const headers = this.formatHeader();
     const request = this.formatRequest(url, headers);
 
@@ -81,14 +78,14 @@ class SpotifyFunctions {
           username = response.data.id;
         });
     } catch (error) {
-      throw new Error('Could not get the username.')
+      throw new Error(Constants.SPOTIFY_USER_ERROR);
     }
   
     return username;
   }
   
   createPlaylist = async (userId, title) => {
-    const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
+    const url = Constants.SPOTIFY_NEW_PLAYLIST_URL + userId + Constants.SPOTIFY_PLAYLIST;
     const data = JSON.stringify({ 'name': title });
     const headers = this.formatHeader();
     const request = this.formatRequest(url, headers, data);
@@ -100,14 +97,14 @@ class SpotifyFunctions {
         id = response.data.id;
       })
       .catch((error) => {
-        throw new Error('Could not create a new playlist.')
+        throw new Error(Constants.SPOTIFY_PLAYLIST_ERROR);
       });
   
     return id;
   }
   
   addTracksToPlaylist = async (playlistId, playlist) => {
-    const url = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
+    const url = Constants.SPOTIFY_NEW_TRACKS_URL + playlistId + Constants.SPOTIFY_TRACKS;
     const data = JSON.stringify({ 'uris': playlist });
     const headers = this.formatHeader();
     const request = this.formatRequest(url, headers, data);
@@ -119,7 +116,7 @@ class SpotifyFunctions {
       snapshotId = response.data.url;
     })
     .catch((error) => {
-      throw new Error('Could not add tracks to playlist.')
+      throw new Error(Constants.SPOTIFY_TRACKS_ERROR)
     });
 
     return snapshotId;

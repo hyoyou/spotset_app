@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,8 +7,8 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 export default class Playlist extends Component {
   render() {
     const {
- clearSetlist, createPlaylist, isUser, playlistUrl 
-} = this.props;
+      clearSetlist, createPlaylist, isUser, playlistUrl,
+    } = this.props;
 
     return (
       <div id="Playlist">
@@ -25,7 +26,7 @@ export default class Playlist extends Component {
               Your playlist has been created
             </h3>
             <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
-              <button id="btn-playlist">Go to Playlist</button>
+              <button id="btn-playlist" type="button">Go to Playlist</button>
             </a>
           </>
         )}
@@ -34,7 +35,7 @@ export default class Playlist extends Component {
         <p>Toggle Private/Public Playlist</p>
         <p>Tweet a Link to Your Playlist</p>
 
-        <button id="btn-setlists" onClick={clearSetlist}>Find a Different Setlist</button>
+        <button id="btn-setlists" onClick={clearSetlist} type="button">Find a Different Setlist</button>
       </div>
     );
   }
