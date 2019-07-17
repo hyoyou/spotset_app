@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Constants from '../constants/ApiConstants';
 import Error from './Error';
 import HttpClient from '../utilities/HttpClient';
 import Login from './Login';
@@ -81,7 +82,7 @@ export default class SpotSet extends Component {
 
     this.spotifyFunctions.createAndSavePlaylist(playlist, title)
       .then((response) => {
-        const playlistUrl = `https://open.spotify.com/playlist/${response}`;
+        const playlistUrl = Constants.SPOTIFY_PLAYLIST_URL + response;
         this.setState({ playlistUrl });
       })
       .catch(error => {

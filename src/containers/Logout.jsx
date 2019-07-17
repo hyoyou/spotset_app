@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 
@@ -7,7 +8,7 @@ export default class Logout extends Component {
 
     return (
       <div className="Logout">
-        <button id="btn-spotify" onClick={logOutHandler}>Log Out</button>
+        <button id="btn-spotify" onClick={logOutHandler} type="button">Log Out</button>
       </div>
     );
   }

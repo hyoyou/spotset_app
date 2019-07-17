@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import * as Constants from '../constants/ApiConstants';
 import Error from './Error';
 import Playlist from './Playlist';
 import SetlistView from './SetlistView';
@@ -45,7 +46,7 @@ export default class Setlist extends Component {
         if (error.response) {
           this.setState({ error: error.response.data.message });
         } else {
-          this.setState({ error: 'There was an error connecting to the server'});
+          this.setState({ error: Constants.SERVER_ERROR });
         }
       })
   }
