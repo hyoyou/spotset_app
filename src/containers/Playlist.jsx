@@ -1,9 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 export default class Playlist extends Component {
   render() {
-    const { clearSetlist, createPlaylist, isUser, playlistUrl } = this.props;
+    const {
+ clearSetlist, createPlaylist, isUser, playlistUrl 
+} = this.props;
 
     return (
       <div id="Playlist">
@@ -16,15 +20,19 @@ export default class Playlist extends Component {
 
         { playlistUrl && (
           <>
-            <h3>Your playlist has been created :)</h3>
+            <h3>
+              <FontAwesomeIcon id="icon-thumbsUp" icon={faThumbsUp} />
+              Your playlist has been created
+            </h3>
             <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
               <button id="btn-playlist">Go To Playlist</button>
             </a>
           </>
         )}
 
-        <p>Private / Public Playlist Toggle, Coming Soon!</p>
-        <p>Tweet Your Playlist, Coming Soon!</p>
+        <h4>Features Coming Soon:</h4>
+        <p>Toggle Private/Public Playlist</p>
+        <p>Tweet a Link to Your Playlist</p>
 
         <button id="btn-setlists" onClick={clearSetlist}>Find a Different Setlist</button>
       </div>

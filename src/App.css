@@ -208,6 +208,10 @@
   font-weight: 300;
 }
 
+#icon-thumbsUp {
+  margin-right: 1%;
+}
+
 #icon-edit {
   margin-left: -5%;
 }
@@ -217,4 +221,8 @@
   grid-row: 4;
   margin-top: 10%;
   margin-left: 50%;
+}
+
+#coming-soon {
+  list-style-type: none;
 }
