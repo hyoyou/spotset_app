@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default class TitleForm extends Component {
   state = {
@@ -30,6 +32,7 @@ export default class TitleForm extends Component {
       <div className="App-field">
         <form>
           <input id='title' name='newTitle' type='text' value={ newTitle } onChange={ this.onInput } />
+          <FontAwesomeIcon id='icon-edit' icon={faPencilAlt} />
         </form>
       </div>
     )
