@@ -3,6 +3,10 @@
 ## Prerequisites
 - yarn to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
 
+## Setting up Environment Variables
+* Create a `.env` file and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
+* Insert your Spotify Client ID where specified and save
+
 ## Setup
 * Clone this repo and `cd` into directory
 * Run the following command to install dependencies:
@@ -51,3 +55,6 @@ Click on `Save as Playlist` to save. Upon success, you should see the button has
 <p align="center">
   <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-17+at+11.26.17+AM.png">
 </p>
+
+## Troubleshoot
+I am currently working on fixing the issue where a user has been logged out after an hour due to an expired token, but the setlist is still saved. Please open the developer tools in a Chrome browser and run `localStorage.removeItem("setlist_id")` to remove it. Sorry for the inconvenience!
