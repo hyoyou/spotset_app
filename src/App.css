@@ -85,6 +85,10 @@
   font-size: 1em;
 }
 
+#title:hover, #setlistId:hover {
+  cursor: pointer;
+}
+
 #btn-title, #btn-setlistId {
   text-align: center;
   padding: 0.75em 1.5em;
@@ -202,4 +206,15 @@
   font-family: 'Raleway', sans-serif;
   font-size: 3em;
   font-weight: 300;
+}
+
+#icon-edit {
+  margin-left: -5%;
+}
+
+#icon-spinner {
+  grid-column: 1/1;
+  grid-row: 4;
+  margin-top: 10%;
+  margin-left: 50%;
 }

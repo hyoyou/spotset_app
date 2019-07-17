@@ -136,4 +136,19 @@ describe('Setlist Component', () => {
       done();
     });
   });
+
+  it('displays loading spinner while setlist is loading', () => {
+    const wrapper = mount(<Setlist />);
+
+    expect(wrapper.state().isLoading).toEqual(true);
+    expect(wrapper.find('#icon-spinner').length).toEqual(2);
+  });
+
+  it('does not display loading spinner when setlist is loaded', () => {
+    const wrapper = mount(<Setlist />);
+    wrapper.setState({ isLoading: false });
+
+    expect(wrapper.state().isLoading).toEqual(false);
+    expect(wrapper.find('#icon-spinner').length).toEqual(0);
+  });
 });
