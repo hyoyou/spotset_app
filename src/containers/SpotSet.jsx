@@ -25,20 +25,23 @@ export default class SpotSet extends Component {
   
   componentDidMount() {
     this.checkForSetlist();
-    const accessToken = this.spotifyFunctions.checkForSpotifyAccessToken();
-    
-    accessToken ? 
-    this.setState({ isAuthenticated: true, accessToken }) 
-    : 
-    this.setState({ isAuthenticated: false, accessToken: null });
+    this.checkForAccessToken();
   }
 
-  checkForSetlist = () => {
+  checkForSetlist() {
     const selectedSetlist = localStorage.getItem('setlist_id');
 
     if (selectedSetlist) {
       this.setState({ setlistId: selectedSetlist });
     }
+  }
+
+  checkForAccessToken() {
+    const accessToken = this.spotifyFunctions.checkForSpotifyAccessToken();
+    accessToken ?
+      this.setState({ isAuthenticated: true, accessToken })
+      :
+      this.setState({ isAuthenticated: false, accessToken: null });
   }
 
   setSetlist = (setlistId) => {

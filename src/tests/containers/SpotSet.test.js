@@ -23,6 +23,57 @@ describe('SpotSet Component', () => {
     expect(wrapper.find('Login').length).toEqual(0);
   });
 
+  it('clears the state when user logs out', () => {
+    const wrapper = shallow(<SpotSet />);
+    wrapper.setState({
+      isAuthenticated: true,
+      accessToken: 'testToken',
+    });
+
+    wrapper.instance().logout();
+
+    expect(wrapper.instance().state.isAuthenticated).toBeFalsy();
+    expect(wrapper.instance().state.accessToken).toBeNull();
+  });
+
+  it('checks for logged in user upon render and updates state', () => {
+    const spy = jest.spyOn(SpotSet.prototype, 'checkForAccessToken');
+    const wrapper = shallow(<SpotSet />);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(wrapper.state().isAuthenticated).toBeFalsy();
+  });
+
+  it('checks for setlist id upon render and updates state', () => {
+    const spy = jest.spyOn(SpotSet.prototype, 'checkForSetlist');
+    const wrapper = shallow(<SpotSet />);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(wrapper.state().isAuthenticated).toBeFalsy();
+  });
+
+  it('sets the setlist when setSetlist is called with an ID', () => {
+    const wrapper = shallow(<SpotSet />)
+    wrapper.instance().setSetlist('testId');
+
+    expect(wrapper.state().setlistId).toEqual('testId');
+  });
+
+  it('clears the setlist when clearSetlist is called', () => {
+    const wrapper = shallow(<SpotSet />);
+    wrapper.setState({
+      setlistId: 'testId',
+      playlistUrl: 'https://test.com',
+      error: null
+    });
+
+    wrapper.instance().clearSetlist();
+
+    expect(wrapper.state().setlistId).toBeNull();
+    expect(wrapper.state().playlistUrl).toBeNull();
+    expect(wrapper.state().error).toBeNull();
+  });
+
   it('formats the URL of the newly created playlist with the result from a successful call to create playlist', async (done) => {
     const wrapper = shallow(<SpotSet />);
 
