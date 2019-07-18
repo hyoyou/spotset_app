@@ -3,12 +3,18 @@
 ## Prerequisites
 - yarn to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
 
-## Setting up Environment Variables
-* Create a `.env` file and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
-* Insert your Spotify Client ID where specified and save
-
 ## Setup
 * Clone this repo and `cd` into directory
+
+### Setting up Environment Variables
+* Copy the .env.sample file into a .env file with command
+
+```
+$ cp .env.sample .env
+```
+or create a `.env` file in root and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
+* Insert your Spotify Client ID where specified and save
+
 * Run the following command to install dependencies:
 
 ```
