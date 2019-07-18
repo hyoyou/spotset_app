@@ -1,7 +1,8 @@
 # SpotSet Client [![Build Status](https://travis-ci.com/hyoyou/spotset_app.svg?branch=master)](https://travis-ci.com/hyoyou/spotset_app)
 
 ## Prerequisites
-- yarn to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
+- Node, Download [here](https://nodejs.org/en/download/)
+- Yarn, to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
 
 ## Setup
 * Clone this repo and `cd` into directory
