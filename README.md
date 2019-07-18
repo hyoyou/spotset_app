@@ -3,12 +3,18 @@
 ## Prerequisites
 - yarn to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
 
-## Setting up Environment Variables
-* Create a `.env` file and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
-* Insert your Spotify Client ID where specified and save
-
 ## Setup
 * Clone this repo and `cd` into directory
+
+### Setting up Environment Variables
+* Copy the .env.sample file into a .env file with command
+
+```
+$ cp .env.sample .env
+```
+or create a `.env` file in root and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
+* Insert your Spotify Client ID where specified and save
+
 * Run the following command to install dependencies:
 
 ```
@@ -41,7 +47,7 @@ If server is already running, navigating to http://localhost:3000/ should take y
 Find a setlist that you're interested in, from [setlist.fm](https://www.setlist.fm), and grab the setlist ID from the URL. It is an 8-character alphanumeric combination just before the `.html` at the end.
 
 <p align="center">
-  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-17+at+10.54.40+AM.png">
+  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-18+at+12.54.30+AM.png">
 </p>
 
 Once you click on `Display Setlist` with a valid setlist ID, you should see the setlist with the availability of the songs on Spotify.
