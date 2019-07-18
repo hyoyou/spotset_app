@@ -47,7 +47,7 @@ If server is already running, navigating to http://localhost:3000/ should take y
 Find a setlist that you're interested in, from [setlist.fm](https://www.setlist.fm), and grab the setlist ID from the URL. It is an 8-character alphanumeric combination just before the `.html` at the end.
 
 <p align="center">
-  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-17+at+10.54.40+AM.png">
+  <img width="650" src="https://spotset.s3.amazonaws.com/Screen+Shot+2019-07-18+at+12.54.30+AM.png">
 </p>
 
 Once you click on `Display Setlist` with a valid setlist ID, you should see the setlist with the availability of the songs on Spotify.
