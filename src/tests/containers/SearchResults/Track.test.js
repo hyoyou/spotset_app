@@ -1,34 +1,26 @@
-/* eslint-disable no-undef */
 import { shallow } from 'enzyme';
 import React from 'react';
 import Track from '../../../containers/SearchResults/Track';
 
 describe('Track Component', () => {
-  it('sets addedToList to true when addTrack is called', (done) => {
-    const addTrack = Object.assign(jest.fn(), { addTrack: () => { } });
+  it('sets addedToList to true when addTrack is called', () => {
+    const addTrack = jest.fn();
     const sampleUri = 'spotify:track:sampleUri1';
-    const wrapper = shallow(<Track uri={'sampleUri'} addTrack={addTrack} />);
+    const wrapper = shallow(<Track uri={sampleUri} addTrack={addTrack} />);
 
-    wrapper.instance().addTrack(sampleUri);
+    wrapper.find('.available').simulate('click');
 
-    process.nextTick(() => {
-      expect(wrapper.state().addedToList).toBeTruthy();
-
-      done();
-    });
+    expect(addTrack).toHaveBeenCalledWith(sampleUri);
   });
 
-  it('sets addedToList to false when removeTrack is called', (done) => {
-    const removeTrack = Object.assign(jest.fn(), { removeTrack: () => { } });
+  it('sets addedToList to false when removeTrack is called', () => {
+    const removeTrack = jest.fn();
     const sampleUri = 'spotify:track:sampleUri1';
-    const wrapper = shallow(<Track uri={'sampleUri'} removeTrack={removeTrack} />);
+    const wrapper = shallow(<Track uri={sampleUri} removeTrack={removeTrack} />);
 
-    wrapper.instance().removeTrack(sampleUri);
+    wrapper.find('.available').simulate('click');
+    wrapper.find('.available').simulate('click');
 
-    process.nextTick(() => {
-      expect(wrapper.state().addedToList).toBeFalsy();
-
-      done();
-    });
+    expect(removeTrack).toHaveBeenCalledWith(sampleUri);
   });
 });

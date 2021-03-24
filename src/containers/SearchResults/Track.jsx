@@ -1,40 +1,48 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-export default class Track extends Component {
-  state = {
-    addedToList: false
-  }
+export const Track = ({ uri, addTrack, removeTrack, title }) => {
+  const [addedToList, setAddedToList] = useState(false);
 
-  componentDidMount() {
-    if (this.props.uri) {
-      this.setState({
-        addedToList: true
-      })
+  useEffect(() => {
+    if (uri) {
+      setAddedToList(true);
     }
+  }, [uri]);
+
+  const handleAddTrack = (_e, uri) => {
+    setAddedToList(true);
+    addTrack(uri);
   }
 
-  addTrack = (event, uri) => {
-    this.setState({ addedToList: true });
-    this.props.addTrack(uri);
+  const handleRemoveTrack = (_e, uri) => {
+    setAddedToList(false);
+    removeTrack(uri);
   }
 
-  removeTrack = (event, uri) => {
-    this.setState({ addedToList: false });
-    this.props.removeTrack(uri);
-  }
-
-  render() {
-    const { addedToList } = this.state;
-    const { title, uri } = this.props;
-
-    return (
-      <div
-        id={ addedToList ? null : 'removed' }
-        className={ uri ? 'available' : 'notfound' }
-        onClick={ addedToList ? (e) => this.removeTrack(e, uri) : (e) => this.addTrack(e, uri) }
-      >
-        { title }
-      </div>
-    )
-  }
+  return (
+    <div
+      id={addedToList ? null : 'removed'}
+      className={uri ? 'available' : 'notfound'}
+      onClick={addedToList ? (e) => handleRemoveTrack(e, uri) : (e) => handleAddTrack(e, uri)}
+    >
+      {title}
+    </div>
+  )
 }
+
+Track.propTypes = {
+  uri: PropTypes.string,
+  addTrack: PropTypes.func,
+  removeTrack: PropTypes.func,
+  title: PropTypes.string
+}
+
+Track.defaultProps = {
+  uri: null,
+  addTrack: () => { },
+  removeTrack: () => { },
+  title: ''
+}
+
+export default Track;
