@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { mount } from 'enzyme';
 import React, { useState as useStateMock } from 'react';
 import Setlists from '../../../containers/SearchForm/Setlists';

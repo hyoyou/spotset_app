@@ -1,40 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
-export default class TitleForm extends Component {
-  state = {
-    newTitle: '',
-  }
+export const TitleForm = ({ title, saveTitleHandler }) => {
+  const [newTitle, setNewTitle] = useState(title);
 
-  componentDidUpdate(prevProps) {
-    if (this.props.title !== prevProps.title) {
-      this.setState({
-        newTitle: this.props.title
-      })
+  useEffect(() => {
+    setNewTitle(title)
+  }, [title]);
+
+  const handleChange = (event) => {
+    setNewTitle(event.target.value)
+
+    if (saveTitleHandler) {
+      saveTitleHandler(newTitle);
     }
   }
 
-  onInput = (event) => {
-    this.setState({
-      newTitle: event.target.value
-    })
-
-    if (this.props.saveTitleHandler) {
-      this.props.saveTitleHandler(this.state.newTitle);
-    }
-  }
-
-  render() {
-    const { newTitle } = this.state;
-
-    return (
-      <div className="App-field">
-        <form>
-          <input id='title' name='newTitle' type='text' value={ newTitle } onChange={ this.onInput } />
-          <FontAwesomeIcon id='icon-edit' icon={faPencilAlt} />
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div className="App-field">
+      <form>
+        <input id='title' name='newTitle' type='text' value={newTitle} onChange={handleChange} />
+        <FontAwesomeIcon id='icon-edit' icon={faPencilAlt} />
+      </form>
+    </div>
+  )
 }
+
+TitleForm.propTypes = {
+  title: PropTypes.string,
+  saveTitleHandler: PropTypes.func,
+}
+
+TitleForm.defaultProps = {
+  title: '',
+  saveTitleHandler: null,
+}
+
+export default TitleForm;

@@ -1,20 +1,37 @@
-/* eslint-disable no-undef */
 import { mount } from 'enzyme';
-import React from 'react';
+import React, { useState as useStateMock } from 'react';
 import TitleForm from '../../../containers/SearchResults/TitleForm';
 
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useState: jest.fn(),
+}));
+
 describe('TitleForm Component', () => {
-  it('displays an input field prepopulated with the playlist title that can be edited', () => {
-    const title = 'artistName at venueName on 07-01-2019';
+  const setState = jest.fn();
+  const title = 'artistName at venueName on 07-01-2019';
+  let wrapper;
 
-    const wrapper = mount(<TitleForm title={title} />);
-    wrapper.setProps({ title });
+  beforeEach(() => {
+    useStateMock.mockImplementation(init => [init, setState]);
 
-    expect(wrapper.instance().props.title).toEqual('artistName at venueName on 07-01-2019');
+    wrapper = mount(<TitleForm title={title} />);
+  });
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('displays an input field prepopulated with the playlist title that is passed in as props', () => {
+    expect(wrapper.find('#title').props().value).toEqual(title);
+  });
+
+  it('updates the title when the title input field is changed', () => {
     const input = wrapper.find('input').at(0);
-    input.instance().value = 'Artist at Venue on Date';
-    input.simulate('change');
-    expect(wrapper.instance().state.newTitle).toEqual('Artist at Venue on Date');
+    const expectedValue = 'Artist at Venue on Date';
+
+    input.simulate('change', { target: { value: expectedValue } });
+
+    expect(setState).toHaveBeenCalledWith(expectedValue);
   });
 });
