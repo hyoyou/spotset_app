@@ -1,15 +1,20 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Error extends Component {
-  render() {
-    const { message } = this.props;
-
-    return (
-      <div className="Error">
-        <p>{message}</p>
-      </div>
-    );
-  }
+export const Error = ({ message }) => {
+  return (
+    <div className="Error">
+      <p>{message}</p>
+    </div>
+  );
 }
+
+Error.propTypes = {
+  message: PropTypes.string
+}
+
+Error.defaultProps = {
+  message: ''
+}
+
+export default Error;
