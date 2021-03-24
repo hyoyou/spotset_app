@@ -4,10 +4,6 @@ import React from 'react';
 import SetlistView from '../../../containers/SearchResults/SetlistView';
 
 describe('SetlistView Component', () => {
-  it('renders without crashing', () => {
-    shallow(<SetlistView setlist="" />);
-  });
-
   it('displays the setlist from valid passed in props', () => {
     const testProps = {
       id: 'testId',
@@ -23,7 +19,6 @@ describe('SetlistView Component', () => {
 
     const wrapper = mount(<SetlistView setlist={testProps} />);
 
-    expect(wrapper.instance().props.setlist.tracks.length).toEqual(3);
     expect(wrapper.find('Track').length).toEqual(3);
   });
 });

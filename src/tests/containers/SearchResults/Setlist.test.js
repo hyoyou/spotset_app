@@ -25,10 +25,6 @@ const testProps = {
 };
 
 describe('Setlist Component', () => {
-  it('renders without crashing', () => {
-    shallow(<Setlist />);
-  });
-
   it('fetches setlist from the server when server returns a success response and saves to state', (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
