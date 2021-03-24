@@ -1,15 +1,16 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Logout extends Component {
-  render() {
-    const { logOutHandler } = this.props;
-
-    return (
-      <div className="Logout">
-        <button id="btn-spotify" onClick={logOutHandler} type="button">Log Out</button>
-      </div>
-    );
-  }
+export const Logout = ({ logOutHandler }) => {
+  return (
+    <div className="Logout">
+      <button id="btn-spotify" onClick={logOutHandler} type="button">Log Out</button>
+    </div>
+  );
 }
+
+Logout.propTypes = {
+  logOutHandler: PropTypes.func.isRequired
+}
+
+export default Logout;

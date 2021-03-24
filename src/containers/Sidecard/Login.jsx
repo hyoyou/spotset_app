@@ -1,17 +1,18 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Login extends Component {
-  render() {
-    const { spotifyFunctions } = this.props;
-
-    return (
-      <div className="Login">
-        <a href={spotifyFunctions.getRedirectUrl()}>
-          <button id="btn-spotify" type="button">Log in to Spotify</button>
-        </a>
-      </div>
-    );
-  }
+export const Login = ({ spotifyFunctions }) => {
+  return (
+    <div className="Login">
+      <a href={spotifyFunctions.getRedirectUrl()}>
+        <button id="btn-spotify" type="button">Log in to Spotify</button>
+      </a>
+    </div>
+  );
 }
+
+Login.propTypes = {
+  spotifyFunctions: PropTypes.object.isRequired
+}
+
+export default Login;
