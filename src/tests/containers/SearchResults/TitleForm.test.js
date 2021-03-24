@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { mount } from 'enzyme';
 import React from 'react';
-import TitleForm from '../../containers/TitleForm';
+import TitleForm from '../../../containers/SearchResults/TitleForm';
 
 describe('TitleForm Component', () => {
   it('displays an input field prepopulated with the playlist title that can be edited', () => {

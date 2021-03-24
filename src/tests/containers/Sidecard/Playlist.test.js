@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { shallow } from 'enzyme';
 import React from 'react';
-import Playlist from '../../containers/Playlist';
+import Playlist from '../../../containers/Sidecard/Playlist';
 
 describe('Playlist Component', () => {
   it('renders a button to create playlist when user is signed in', () => {
@@ -21,7 +21,7 @@ describe('Playlist Component', () => {
 
     expect(wrapper.text()).toContain('Log in to save playlist');
   });
-  
+
   it('does not display button to save playlist if user is not signed in', () => {
     const wrapper = shallow(<Playlist isUser={false} />);
 
@@ -39,7 +39,7 @@ describe('Playlist Component', () => {
   it('renders a button that calls a function to clear chosen setlist', () => {
     const mockClear = jest.fn();
     const wrapper = shallow(<Playlist clearSetlist={mockClear} />);
-    
+
     expect(wrapper.exists('#btn-setlists')).toBeTruthy();
     wrapper.find('#btn-setlists').simulate('click');
     expect(mockClear).toHaveBeenCalled();

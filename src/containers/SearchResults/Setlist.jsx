@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import * as Constants from '../constants/ApiConstants';
-import Error from './Error';
-import Playlist from './Playlist';
+import * as Constants from '../../constants/ApiConstants';
+import Error from '../Banners/Error';
+import Playlist from '../Sidecard/Playlist';
 import SetlistView from './SetlistView';
 
 export default class Setlist extends Component {
@@ -34,8 +34,8 @@ export default class Setlist extends Component {
       .then(response => {
         let title = this.formatTitle(response.data);
         let playlistTracks = this.getDefaultPlaylistTracks(response.data.tracks);
-        
-        this.setState({ 
+
+        this.setState({
           setlist: response.data,
           title,
           playlistTracks,
@@ -98,9 +98,21 @@ export default class Setlist extends Component {
         { isLoading &&
           <FontAwesomeIcon id='icon-spinner' icon={faSpinner} size="3x" pulse />
         }
-        <SetlistView setlist={setlist} playlistTracks={playlistTracks} title={title} saveTitleHandler={this.saveTitle} handleAddTrack={this.handleAddTrack} handleRemoveTrack={this.handleRemoveTrack} />
-        <Playlist isUser={isUser} clearSetlist={clearSetlist} createPlaylist={this.addToPlaylist} playlistUrl={playlistUrl} />
-      
+        <SetlistView
+          setlist={setlist}
+          playlistTracks={playlistTracks}
+          title={title}
+          saveTitleHandler={this.saveTitle}
+          handleAddTrack={this.handleAddTrack}
+          handleRemoveTrack={this.handleRemoveTrack}
+        />
+        <Playlist
+          isUser={isUser}
+          clearSetlist={clearSetlist}
+          createPlaylist={this.addToPlaylist}
+          playlistUrl={playlistUrl}
+        />
+
         { error &&
           <Error message={error} />
         }

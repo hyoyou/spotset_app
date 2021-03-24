@@ -2,9 +2,9 @@
 import { mount, shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
-import Error from '../../containers/Error';
-import PromiseFactory from '../testHelpers/PromiseFactory';
-import Setlist from '../../containers/Setlist';
+import Error from '../../../containers/Banners/Error';
+import PromiseFactory from '../../testHelpers/PromiseFactory';
+import Setlist from '../../../containers/SearchResults/Setlist';
 
 jest.mock('axios');
 
