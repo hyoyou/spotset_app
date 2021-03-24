@@ -3,9 +3,6 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: [
-    'airbnb',
-  ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

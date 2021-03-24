@@ -9,7 +9,8 @@ export default class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <span id="spot">Spot</span><span id="set">Set</span>
+          <span id="spot">Spot</span>
+          <span id="set">Set</span>
         </header>
 
         <SpotSet />
