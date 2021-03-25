@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import * as Constants from '../../constants/ApiConstants';
@@ -6,56 +6,47 @@ import Error from '../Banners/Error';
 import Playlist from '../Sidecard/Playlist';
 import SetlistView from './SetlistView';
 
-export default class Setlist extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      setlist: '',
-      error: '',
-      title: '',
-      playlistTracks: [],
-      isLoading: true
-    };
-  }
+export const Setlist = ({ setlistId, clearSetlist, isUser, playlistUrl, httpClient }) => {
+  const [title, setTitle] = useState('');
+  const [setlist, setSetlist] = useState({});
+  const [playlistTracks, setPlaylistTracks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  componentDidMount() {
-    const { setlistId } = this.props;
+  useEffect(() => {
     if (setlistId) {
-      this.fetchSetlist(setlistId);
+      fetchSetlist(setlistId);
     }
-  }
+  }, [setlistId]);
 
-  fetchSetlist = async (setlistId) => {
-    const { httpClient } = this.props;
+  const fetchSetlist = async (setlistId) => {
     const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${setlistId}`;
     const request = { url: url };
 
     await httpClient.get(request)
       .then(response => {
-        let title = this.formatTitle(response.data);
-        let playlistTracks = this.getDefaultPlaylistTracks(response.data.tracks);
+        let title = formatTitle(response.data);
+        let playlistTracks = getDefaultPlaylistTracks(response.data.tracks);
 
-        this.setState({
-          setlist: response.data,
-          title,
-          playlistTracks,
-          isLoading: false,
-        });
+        setSetlist(response.data);
+        setTitle(title);
+        setPlaylistTracks(playlistTracks);
+        setIsLoading(false);
       })
       .catch(error => {
         if (error.response) {
-          this.setState({ error: error.response.data.message });
+          setError(error.response.data.message);
         } else {
-          this.setState({ error: Constants.SERVER_ERROR });
+          setError(Constants.SERVER_ERROR);
         }
       })
   }
 
-  formatTitle = (setlist) => {
+  const formatTitle = (setlist) => {
     return setlist.artist + ' at ' + setlist.venue + ' on ' + setlist.eventDate;
   }
 
-  getDefaultPlaylistTracks = (availableTracks) => {
+  const getDefaultPlaylistTracks = (availableTracks) => {
     let availableUris = [];
 
     availableTracks.map((track) => {
@@ -68,55 +59,51 @@ export default class Setlist extends Component {
     return availableUris;
   }
 
-  saveTitle = (title) => {
-    this.setState({ title });
+  const saveTitle = (title) => {
+    setTitle(title);
   }
 
-  handleAddTrack = (uri) => {
-    this.setState({ playlistTracks: [...this.state.playlistTracks, uri] });
+  const handleAddTrack = (uri) => {
+    setPlaylistTracks([...playlistTracks, uri]);
   }
 
-  handleRemoveTrack = (uri) => {
-    let updatedTracks = this.state.playlistTracks.filter((track) => {
+  const handleRemoveTrack = (uri) => {
+    let updatedTracks = playlistTracks.filter((track) => {
       return track !== uri;
     })
 
-    this.setState({ playlistTracks: updatedTracks });
+    setPlaylistTracks(updatedTracks);
   }
 
-  addToPlaylist = () => {
-    const { playlistTracks, title } = this.state;
-    this.props.createPlaylist(playlistTracks, title);
+  const addToPlaylist = () => {
+    createPlaylist(playlistTracks, title);
   }
 
-  render() {
-    const { error, isLoading, playlistTracks, setlist, title } = this.state;
-    const { clearSetlist, isUser, playlistUrl } = this.props;
+  return (
+    <>
+      { isLoading &&
+        <FontAwesomeIcon id='icon-spinner' icon={faSpinner} size="3x" pulse />
+      }
+      <SetlistView
+        setlist={setlist}
+        playlistTracks={playlistTracks}
+        title={title}
+        saveTitleHandler={saveTitle}
+        handleAddTrack={handleAddTrack}
+        handleRemoveTrack={handleRemoveTrack}
+      />
+      <Playlist
+        isUser={isUser}
+        clearSetlist={clearSetlist}
+        createPlaylist={addToPlaylist}
+        playlistUrl={playlistUrl}
+      />
 
-    return (
-      <>
-        { isLoading &&
-          <FontAwesomeIcon id='icon-spinner' icon={faSpinner} size="3x" pulse />
-        }
-        <SetlistView
-          setlist={setlist}
-          playlistTracks={playlistTracks}
-          title={title}
-          saveTitleHandler={this.saveTitle}
-          handleAddTrack={this.handleAddTrack}
-          handleRemoveTrack={this.handleRemoveTrack}
-        />
-        <Playlist
-          isUser={isUser}
-          clearSetlist={clearSetlist}
-          createPlaylist={this.addToPlaylist}
-          playlistUrl={playlistUrl}
-        />
-
-        { error &&
-          <Error message={error} />
-        }
-      </>
-    );
-  }
+      { error &&
+        <Error message={error} />
+      }
+    </>
+  );
 }
+
+export default Setlist;
