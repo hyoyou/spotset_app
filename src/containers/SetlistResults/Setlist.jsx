@@ -128,12 +128,12 @@ Setlist.propTypes = {
 
 Setlist.defaultProps = {
   setlistId: "",
-  clearSetlist: () => { },
+  clearSetlist: () => {},
   isUser: false,
   playlistUrl: "",
-  createPlaylist: () => { },
+  createPlaylist: () => {},
   httpClient: {
-    get: () => { }
+    get: () => {}
   }
 };
 
