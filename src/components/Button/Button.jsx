@@ -18,14 +18,14 @@ Button.propTypes = {
   id: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
-  buttonType: PropTypes.string,
+  buttonType: PropTypes.string
 };
 
 Button.defaultProps = {
   id: null,
   href: null,
   onClick: null,
-  buttonType: ButtonElementType.BUTTON,
+  buttonType: ButtonElementType.BUTTON
 };
 
 export default Button;

@@ -5,14 +5,18 @@ module.exports = exports = {
     node: true,
     "jest/globals": true
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:jest/recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:jest/recommended"
+  ],
   parserOptions: {
     ecmaVersion: 2018,
     ecmaFeatures: {
-      "jsx": true,
-      "experimentalObjectRestSpread": true
+      jsx: true,
+      experimentalObjectRestSpread: true
     },
-    sourceType: "module",
+    sourceType: "module"
   },
   parser: "babel-eslint",
   plugins: ["react", "jest"],
@@ -25,24 +29,24 @@ module.exports = exports = {
       "error",
       {
         after: true,
-        before: true,
-      },
+        before: true
+      }
     ],
     "block-scoped-var": "error",
     "brace-style": ["error", "1tbs"],
     camelcase: [
       "error",
       {
-        properties: "never",
-      },
+        properties: "never"
+      }
     ],
     "comma-dangle": ["error", "never"],
     "comma-spacing": [
       "error",
       {
         after: true,
-        before: false,
-      },
+        before: false
+      }
     ],
     "comma-style": ["error", "last"],
     curly: ["error", "all"],
@@ -51,20 +55,23 @@ module.exports = exports = {
     eqeqeq: "error",
     "func-call-spacing": ["error", "never"],
     "func-name-matching": "error",
+    "jest/no-conditional-expect": "warn",
+    "jest/no-done-callback": "warn",
+    "jest/no-try-expect": "warn",
     "key-spacing": [
       "error",
       {
         afterColon: true,
         beforeColon: false,
-        mode: "strict",
-      },
+        mode: "strict"
+      }
     ],
     "keyword-spacing": [
       "error",
       {
         after: true,
-        before: true,
-      },
+        before: true
+      }
     ],
     "linebreak-style": "off",
     "lines-between-class-members": ["error", "always"],
@@ -94,11 +101,11 @@ module.exports = exports = {
     "object-curly-newline": [
       "error",
       {
-        consistent: true,
-      },
+        consistent: true
+      }
     ],
     "object-curly-spacing": ["error", "always"],
-    "object-shorthand": "error",
+    "object-shorthand": "warn",
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "prefer-numeric-literals": "error",
@@ -110,8 +117,8 @@ module.exports = exports = {
       "error",
       "double",
       {
-        avoidEscape: true,
-      },
+        avoidEscape: true
+      }
     ],
     "react/boolean-prop-naming": "off",
     "react/button-has-type": "error",
@@ -132,8 +139,8 @@ module.exports = exports = {
       "error",
       {
         maximum: 1,
-        when: "multiline",
-      },
+        when: "multiline"
+      }
     ],
     "react/jsx-no-bind": "off",
     "react/jsx-no-literals": "off",
@@ -147,8 +154,8 @@ module.exports = exports = {
         afterOpening: "never",
         beforeClosing: "never",
         beforeSelfClosing: "always",
-        closingSlash: "never",
-      },
+        closingSlash: "never"
+      }
     ],
     "react/jsx-wrap-multilines": [
       "error",
@@ -159,8 +166,8 @@ module.exports = exports = {
         declaration: "parens-new-line",
         logical: "ignore",
         prop: "ignore",
-        return: "parens-new-line",
-      },
+        return: "parens-new-line"
+      }
     ],
     "react/no-access-state-in-setstate": "error",
     "react/no-did-mount-set-state": "error",
@@ -172,7 +179,7 @@ module.exports = exports = {
     "react/no-this-in-sfc": "error",
     "react/no-unescaped-entities": "error",
     "react/no-unused-prop-types": "error",
-    "react/no-unused-state": "error",
+    "react/no-unused-state": "warn",
     "react/no-will-update-set-state": "error",
     "react/prefer-es6-class": "error",
     "react/prefer-stateless-function": "off",
@@ -181,8 +188,8 @@ module.exports = exports = {
     "react/sort-comp": [
       "error",
       {
-        order: ["static-methods", "lifecycle", "render", "everything-else"],
-      },
+        order: ["static-methods", "lifecycle", "render", "everything-else"]
+      }
     ],
     "react/style-prop-object": "off",
     "react/void-dom-elements-no-children": "error",
@@ -193,22 +200,22 @@ module.exports = exports = {
       {
         ignoreCase: true,
         ignoreMemberSort: false,
-        memberSyntaxSortOrder: ["none", "all", "multiple", "single"],
-      },
+        memberSyntaxSortOrder: ["none", "all", "multiple", "single"]
+      }
     ],
     "sort-keys": [
       "off",
       "asc",
       {
         caseSensitive: true,
-        natural: false,
-      },
+        natural: false
+      }
     ],
     "sort-vars": [
       "error",
       {
-        ignoreCase: false,
-      },
+        ignoreCase: false
+      }
     ],
     "space-before-blocks": ["error", "always"],
     "space-before-function-paren": [
@@ -216,8 +223,8 @@ module.exports = exports = {
       {
         anonymous: "always",
         asyncArrow: "always",
-        named: "never",
-      },
+        named: "never"
+      }
     ],
     "space-in-parens": ["error", "never"],
     "space-infix-ops": "error",
@@ -225,15 +232,15 @@ module.exports = exports = {
       "error",
       {
         after: true,
-        before: false,
-      },
+        before: false
+      }
     ],
     "template-curly-spacing": ["error", "never"],
-    yoda: ["error", "never"],
+    yoda: ["error", "never"]
   },
   settings: {
     react: {
-      version: "17.0",
-    },
-  },
+      version: "17.0"
+    }
+  }
 };

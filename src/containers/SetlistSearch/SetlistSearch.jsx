@@ -28,11 +28,11 @@ export const SetlistSearch = ({ onClick }) => {
 };
 
 SetlistSearch.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 SetlistSearch.defaultProps = {
-  onClick: () => {},
+  onClick: () => {}
 };
 
 export default SetlistSearch;

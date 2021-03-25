@@ -25,7 +25,7 @@ const testProps = {
 };
 
 describe("Setlist Component", () => {
-  xit("fetches setlist from the server when server returns a success response and saves to state", (done) => {
+  it.skip("fetches setlist from the server when server returns a success response and saves to state", (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
 
@@ -50,7 +50,7 @@ describe("Setlist Component", () => {
     });
   });
 
-  xit("fetches error response from the server when server returns an error response and renders Error component", (done) => {
+  it.skip("fetches error response from the server when server returns an error response and renders Error component", (done) => {
     const promise = PromiseFactory.createReject({
       response: { data: { message: "error fetching" } }
     });
@@ -77,7 +77,7 @@ describe("Setlist Component", () => {
     });
   });
 
-  xit("displays error response when server is down and renders Error component", (done) => {
+  it.skip("displays error response when server is down and renders Error component", (done) => {
     const promise = PromiseFactory.createReject("error");
     const httpClient = axios;
 
@@ -100,7 +100,7 @@ describe("Setlist Component", () => {
     });
   });
 
-  xit("updates the title when saveTitle is called with the title of the playlist", (done) => {
+  it.skip("updates the title when saveTitle is called with the title of the playlist", (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
@@ -122,7 +122,7 @@ describe("Setlist Component", () => {
     expect(wrapper.state().title).toEqual("Artist at Venue on Date");
   });
 
-  xit("adds track Uris to playlistTracks state when data is received", (done) => {
+  it.skip("adds track Uris to playlistTracks state when data is received", (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
@@ -142,7 +142,7 @@ describe("Setlist Component", () => {
     });
   });
 
-  xit("adds removes a track Uri from playlistTracks state when handleRemoveTrack is called with the uri", (done) => {
+  it.skip("adds removes a track Uri from playlistTracks state when handleRemoveTrack is called with the uri", (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
@@ -166,7 +166,7 @@ describe("Setlist Component", () => {
     });
   });
 
-  xit("adds a track Uri from playlistTracks state when handleAddTrack is called with the uri", (done) => {
+  it.skip("adds a track Uri from playlistTracks state when handleAddTrack is called with the uri", (done) => {
     const promise = PromiseFactory.createResolve({ data: testProps });
     const httpClient = axios;
     httpClient.get.mockReturnValue(promise);
@@ -192,14 +192,14 @@ describe("Setlist Component", () => {
     });
   });
 
-  xit("displays loading spinner while setlist is loading", () => {
+  it.skip("displays loading spinner while setlist is loading", () => {
     const wrapper = mount(<Setlist />);
 
     expect(wrapper.state().isLoading).toEqual(true);
     expect(wrapper.find("#icon-spinner").length).toEqual(2);
   });
 
-  xit("does not display loading spinner when setlist is loaded", () => {
+  it.skip("does not display loading spinner when setlist is loaded", () => {
     const wrapper = mount(<Setlist />);
     wrapper.setState({ isLoading: false });
 

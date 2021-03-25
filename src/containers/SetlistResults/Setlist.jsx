@@ -13,7 +13,7 @@ export const Setlist = ({
   isUser,
   playlistUrl,
   createPlaylist,
-  httpClient,
+  httpClient
 }) => {
   const [title, setTitle] = useState("");
   const [setlist, setSetlist] = useState({});

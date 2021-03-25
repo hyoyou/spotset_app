@@ -31,12 +31,12 @@ export const TitleField = ({ title, saveTitleHandler }) => {
 
 TitleField.propTypes = {
   title: PropTypes.string,
-  saveTitleHandler: PropTypes.func,
+  saveTitleHandler: PropTypes.func
 };
 
 TitleField.defaultProps = {
   title: "",
-  saveTitleHandler: null,
+  saveTitleHandler: null
 };
 
 export default TitleField;

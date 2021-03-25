@@ -9,11 +9,11 @@ export const ConditionalContainer = ({ condition, children }) => {
 };
 
 ConditionalContainer.propTypes = {
-  condition: PropTypes.any,
+  condition: PropTypes.any
 };
 
 ConditionalContainer.defaultProps = {
-  condition: false,
+  condition: false
 };
 
 export default ConditionalContainer;

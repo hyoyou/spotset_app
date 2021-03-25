@@ -7,10 +7,10 @@ import SpotifyFunctions from "../../../helpers/SpotifyFunctions";
 describe("Login Component", () => {
   it("Log In button calls the function to get Spotify log in page URL when clicked", () => {
     const spotifyFunctions = new SpotifyFunctions("httpClient");
-    const getRedirectUrl = (spotifyFunctions.getRedirectUrl = jest.fn());
+    spotifyFunctions.getRedirectUrl = jest.fn();
     const wrapper = mount(<Login spotifyFunctions={spotifyFunctions} />);
 
     wrapper.find("Button").simulate("click");
-    expect(getRedirectUrl).toHaveBeenCalled();
+    expect(spotifyFunctions.getRedirectUrl).toHaveBeenCalled();
   });
 });

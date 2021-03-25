@@ -18,14 +18,14 @@ describe("SetlistSearch Component", () => {
     jest.clearAllMocks();
   });
 
-  xit("renders an input field for the setlistId with a default value", () => {
+  it.skip("renders an input field for the setlistId with a default value", () => {
     const wrapper = mount(<SetlistSearch />);
     const input = wrapper.find("#setlistId");
 
     expect(input.props().value).toEqual("");
   });
 
-  xit("updates setlistId state with value in input field", () => {
+  it.skip("updates setlistId state with value in input field", () => {
     const wrapper = mount(<SetlistSearch />);
     const input = wrapper.find("#setlistId");
 

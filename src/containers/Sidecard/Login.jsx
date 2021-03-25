@@ -16,7 +16,7 @@ export const Login = ({ spotifyFunctions }) => {
 };
 
 Login.propTypes = {
-  spotifyFunctions: PropTypes.object.isRequired,
+  spotifyFunctions: PropTypes.object.isRequired
 };
 
 export default Login;

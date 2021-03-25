@@ -9,7 +9,7 @@ export const SetlistView = ({
   setlist,
   title,
   handleAddTrack,
-  handleRemoveTrack,
+  handleRemoveTrack
 }) => {
   return (
     <div id="SetlistView">
@@ -40,7 +40,7 @@ SetlistView.propTypes = {
   setlist: PropTypes.object,
   title: PropTypes.string,
   handleAddTrack: PropTypes.func,
-  handleRemoveTrack: PropTypes.func,
+  handleRemoveTrack: PropTypes.func
 };
 
 export default SetlistView;

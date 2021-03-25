@@ -11,7 +11,7 @@ export const Logout = ({ logOutHandler }) => {
 };
 
 Logout.propTypes = {
-  logOutHandler: PropTypes.func.isRequired,
+  logOutHandler: PropTypes.func.isRequired
 };
 
 export default Logout;

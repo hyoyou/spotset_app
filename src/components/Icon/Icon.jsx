@@ -11,13 +11,13 @@ Icon.propTypes = {
   id: PropTypes.string,
   icon: PropTypes.object.isRequired,
   size: PropTypes.string,
-  shouldPulse: PropTypes.bool,
+  shouldPulse: PropTypes.bool
 };
 
 Icon.defaultProps = {
   id: null,
   size: null,
-  shouldPulse: false,
+  shouldPulse: false
 };
 
 export default Icon;

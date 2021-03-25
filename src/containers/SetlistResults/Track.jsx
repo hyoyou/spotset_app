@@ -39,14 +39,14 @@ Track.propTypes = {
   uri: PropTypes.string,
   addTrack: PropTypes.func,
   removeTrack: PropTypes.func,
-  title: PropTypes.string,
+  title: PropTypes.string
 };
 
 Track.defaultProps = {
   uri: null,
   addTrack: () => {},
   removeTrack: () => {},
-  title: "",
+  title: ""
 };
 
 export default Track;

@@ -21,7 +21,7 @@ export default class SpotSet extends Component {
       isAuthenticated: false,
       accessToken: null,
       playlistUrl: null,
-      error: null,
+      error: null
     };
   }
 
@@ -55,7 +55,7 @@ export default class SpotSet extends Component {
     this.setState({
       setlistId: null,
       playlistUrl: null,
-      error: null,
+      error: null
     });
   };
 
@@ -71,7 +71,7 @@ export default class SpotSet extends Component {
 
     this.setState({
       isAuthenticated: false,
-      accessToken: null,
+      accessToken: null
     });
   };
 

@@ -7,7 +7,7 @@ export const Playlist = ({
   clearSetlist,
   createPlaylist,
   isUser,
-  playlistUrl,
+  playlistUrl
 }) => {
   return (
     <div id="Playlist">
@@ -47,14 +47,14 @@ Playlist.propTypes = {
   clearSetlist: PropTypes.func,
   createPlaylist: PropTypes.func,
   isUser: PropTypes.bool,
-  playlistUrl: PropTypes.string,
+  playlistUrl: PropTypes.string
 };
 
 Playlist.defaultProps = {
   clearSetlist: () => {},
   createPlaylist: () => {},
   isUser: false,
-  playlistUrl: "",
+  playlistUrl: ""
 };
 
 export default Playlist;

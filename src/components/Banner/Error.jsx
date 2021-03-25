@@ -10,11 +10,11 @@ export const Error = ({ message }) => {
 };
 
 Error.propTypes = {
-  message: PropTypes.string,
+  message: PropTypes.string
 };
 
 Error.defaultProps = {
-  message: "",
+  message: ""
 };
 
 export default Error;

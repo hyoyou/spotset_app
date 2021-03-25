@@ -17,7 +17,7 @@ TextInput.propTypes = {
   id: PropTypes.string,
   value: PropTypes.any,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 };
 
 export default TextInput;

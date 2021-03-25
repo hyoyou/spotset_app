@@ -74,7 +74,7 @@ describe("SpotSet Component", () => {
     expect(wrapper.state().error).toBeNull();
   });
 
-  xit("formats the URL of the newly created playlist with the result from a successful call to create playlist", async (done) => {
+  it.skip("formats the URL of the newly created playlist with the result from a successful call to create playlist", async (done) => {
     const wrapper = shallow(<SpotSet />);
 
     wrapper.instance().spotifyFunctions = new MockSpotifySuccessFunctions();
@@ -89,7 +89,7 @@ describe("SpotSet Component", () => {
     });
   });
 
-  xit("returns an error when call to create a playlist results in an error", async (done) => {
+  it.skip("returns an error when call to create a playlist results in an error", async (done) => {
     const wrapper = shallow(<SpotSet />);
 
     wrapper.instance().spotifyFunctions = new MockSpotifyErrorFunctions();
