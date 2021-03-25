@@ -10,7 +10,7 @@ export const ConditionalContainer = ({ condition, children }) => {
 }
 
 ConditionalContainer.propTypes = {
-  condition: PropTypes.bool
+  condition: PropTypes.any
 }
 
 ConditionalContainer.defaultProps = {

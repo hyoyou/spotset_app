@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import * as Constants from '../../constants/ApiConstants';
 import Error from '../../components/Banner/Error';
 import Playlist from '../Sidecard/Playlist';
 import SetlistView from './SetlistView';
+import ConditionalContainer from '../../components/ConditionalContainer';
+import Icon from '../../components/Icon/Icon';
 
-export const Setlist = ({ setlistId, clearSetlist, isUser, playlistUrl, httpClient }) => {
+export const Setlist = ({ setlistId, clearSetlist, isUser, playlistUrl, createPlaylist, httpClient }) => {
   const [title, setTitle] = useState('');
   const [setlist, setSetlist] = useState({});
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -81,9 +82,10 @@ export const Setlist = ({ setlistId, clearSetlist, isUser, playlistUrl, httpClie
 
   return (
     <>
-      { isLoading &&
-        <FontAwesomeIcon id='icon-spinner' icon={faSpinner} size="3x" pulse />
-      }
+      <ConditionalContainer condition={isLoading}>
+        <Icon id='icon-spinner' icon={faSpinner} size="3x" shouldPulse={true} />
+      </ConditionalContainer>
+
       <SetlistView
         setlist={setlist}
         playlistTracks={playlistTracks}
@@ -92,6 +94,7 @@ export const Setlist = ({ setlistId, clearSetlist, isUser, playlistUrl, httpClie
         handleAddTrack={handleAddTrack}
         handleRemoveTrack={handleRemoveTrack}
       />
+
       <Playlist
         isUser={isUser}
         clearSetlist={clearSetlist}
@@ -99,9 +102,9 @@ export const Setlist = ({ setlistId, clearSetlist, isUser, playlistUrl, httpClie
         playlistUrl={playlistUrl}
       />
 
-      { error &&
+      <ConditionalContainer condition={error}>
         <Error message={error} />
-      }
+      </ConditionalContainer>
     </>
   );
 }

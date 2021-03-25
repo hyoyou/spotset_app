@@ -23,7 +23,7 @@ describe('TitleForm Component', () => {
   });
 
   it('displays an input field prepopulated with the playlist title that is passed in as props', () => {
-    expect(wrapper.find('#title').props().value).toEqual(title);
+    expect(wrapper.find('input#title').props().value).toEqual(title);
   });
 
   it('updates the title when the title input field is changed', () => {

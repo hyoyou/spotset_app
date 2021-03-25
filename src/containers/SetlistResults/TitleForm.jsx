@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
+import Icon from '../../components/Icon/Icon';
+import TextInput from '../../components/Form/TextInput';
 
 export const TitleForm = ({ title, saveTitleHandler }) => {
   const [newTitle, setNewTitle] = useState(title);
@@ -21,8 +22,8 @@ export const TitleForm = ({ title, saveTitleHandler }) => {
   return (
     <div className="App-field">
       <form>
-        <input id='title' name='newTitle' type='text' value={newTitle} onChange={handleChange} />
-        <FontAwesomeIcon id='icon-edit' icon={faPencilAlt} />
+        <TextInput id='title' value={newTitle} onChange={handleChange} />
+        <Icon id='icon-edit' icon={faPencilAlt} />
       </form>
     </div>
   )
