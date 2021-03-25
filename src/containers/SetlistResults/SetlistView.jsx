@@ -1,12 +1,12 @@
 import React from 'react';
-import TitleForm from './TitleForm';
+import TitleField from './TitleField';
 import Track from './Track';
 import PropTypes from 'prop-types';
 
 export const SetlistView = ({ playlistTracks, saveTitleHandler, setlist, title, handleAddTrack, handleRemoveTrack }) => {
   return (
     <div id="SetlistView" >
-      <TitleForm title={title} saveTitleHandler={saveTitleHandler} />
+      <TitleField title={title} saveTitleHandler={saveTitleHandler} />
 
       { setlist.tracks
         && <div className="App-list">

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Icon from '../../components/Icon/Icon';
 import TextInput from '../../components/Form/TextInput';
 
-export const TitleForm = ({ title, saveTitleHandler }) => {
+export const TitleField = ({ title, saveTitleHandler }) => {
   const [newTitle, setNewTitle] = useState(title);
 
   useEffect(() => {
@@ -29,14 +29,14 @@ export const TitleForm = ({ title, saveTitleHandler }) => {
   )
 }
 
-TitleForm.propTypes = {
+TitleField.propTypes = {
   title: PropTypes.string,
   saveTitleHandler: PropTypes.func,
 }
 
-TitleForm.defaultProps = {
+TitleField.defaultProps = {
   title: '',
   saveTitleHandler: null,
 }
 
-export default TitleForm;
+export default TitleField;

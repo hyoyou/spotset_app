@@ -1,13 +1,13 @@
 import { mount } from 'enzyme';
 import React, { useState as useStateMock } from 'react';
-import TitleForm from '../../../containers/SetlistResults/TitleForm';
+import TitleField from '../../../containers/SetlistResults/TitleField';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),
   useState: jest.fn(),
 }));
 
-describe('TitleForm Component', () => {
+describe('TitleField Component', () => {
   const setState = jest.fn();
   const title = 'artistName at venueName on 07-01-2019';
   let wrapper;
@@ -15,7 +15,7 @@ describe('TitleForm Component', () => {
   beforeEach(() => {
     useStateMock.mockImplementation(init => [init, setState]);
 
-    wrapper = mount(<TitleForm title={title} />);
+    wrapper = mount(<TitleField title={title} />);
   });
 
   afterEach(() => {
