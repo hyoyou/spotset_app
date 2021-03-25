@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { mount } from "enzyme";
 import React from "react";
 import Login from "../../../containers/Sidecard/Login";

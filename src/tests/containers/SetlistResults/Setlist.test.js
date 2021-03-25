@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { mount, shallow } from "enzyme";
 import React from "react";
 import axios from "axios";

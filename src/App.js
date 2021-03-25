@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from "react";
 import "./App.css";
 import SpotSet from "./containers/SpotSet";
