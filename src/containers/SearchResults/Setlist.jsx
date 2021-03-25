@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import * as Constants from '../../constants/ApiConstants';
-import Error from '../Banners/Error';
+import Error from '../../components/Banner/Error';
 import Playlist from '../Sidecard/Playlist';
 import SetlistView from './SetlistView';
 

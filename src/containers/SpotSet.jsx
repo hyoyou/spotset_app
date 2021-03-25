@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as Constants from '../constants/ApiConstants';
-import Error from './Banners/Error';
+import Error from '../components/Banner/Error';
 import HttpClient from '../utilities/HttpClient';
 import Login from './Sidecard/Login';
 import Logout from './Sidecard/Logout';
