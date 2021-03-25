@@ -66,8 +66,8 @@ export const Setlist = ({
     return availableUris;
   };
 
-  const saveTitle = () => {
-    setTitle(title);
+  const saveTitle = (titleToSave) => {
+    setTitle(titleToSave);
   };
 
   const handleAddTrack = (uri) => {
