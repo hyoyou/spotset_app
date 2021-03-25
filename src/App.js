@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
 import SpotSet from "./containers/SpotSet";
+import { Header, Footer } from "./components/Card";
 
 export default class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
+        <Header className="App-header">
           <span id="spot">Spot</span>
           <span id="set">Set</span>
-        </header>
+        </Header>
 
         <SpotSet />
 
-        <footer className="App-footer">
-          <h4>Created with APIs provided by setlist.fm and Spotify</h4>
-        </footer>
+        <Footer className="App-footer">
+          Created with APIs provided by setlist.fm and Spotify
+        </Footer>
       </div>
     );
   }
