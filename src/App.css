@@ -13,7 +13,7 @@
   grid-row-gap: 0.5em;
   justify-items: stretch;
   align-items: stretch;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 300;
 }
 
@@ -32,7 +32,7 @@
 
 .App-field {
   grid-column: 1/1;
-  grid-row: 3; 
+  grid-row: 3;
   align-items: center;
   justify-content: center;
   font-size: 1em;
@@ -40,7 +40,7 @@
 
 .App-list {
   grid-column: 1/1;
-  grid-row: 4/5; 
+  grid-row: 4/5;
   align-items: center;
   justify-content: center;
   font-size: 1em;
@@ -48,7 +48,7 @@
 
 #SetlistView {
   grid-column: 1/2;
-  grid-row: 3/5; 
+  grid-row: 3/5;
   align-items: center;
   justify-content: center;
   font-size: 1em;
@@ -73,7 +73,8 @@
   grid-row: 5;
 }
 
-#title, #setlistId {
+#title,
+#setlistId {
   text-align: center;
   height: 100%;
   width: 75%;
@@ -87,11 +88,12 @@
   font-size: 1em;
 }
 
-#title:hover, #setlistId:hover {
+#title:hover,
+#setlistId:hover {
   cursor: pointer;
 }
 
-#btn-title, #btn-setlistId {
+button {
   text-align: center;
   padding: 0.75em 1.5em;
   margin: 0.75em 1em;
@@ -105,46 +107,28 @@
   font-size: 1em;
 }
 
-#btn-title:hover {
+button:hover {
   cursor: pointer;
 }
 
 #btn-title:after {
   content: "";
-  background: #90EE90;
+  background: #90ee90;
   display: block;
   position: absolute;
   padding-top: 300%;
   padding-left: 350%;
-  margin-left: -20px!important;
+  margin-left: -20px !important;
   margin-top: -120%;
   opacity: 0;
-  transition: all 0.8s
+  transition: all 0.8s;
 }
 
 #btn-title:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
-  transition: 0s
-}
-
-#btn-spotify, #btn-playlist, #btn-setlists {
-  text-align: center;
-  padding: 0.75em 1.5em;
-  margin: 0.75em 1em;
-  box-sizing: border-box;
-  border: 2px solid #228047;
-  border-radius: 4px;
-  background-color: #228047;
-  -webkit-transition-duration: 0.7s; /* Safari */
-  transition-duration: 0.7s;
-  color: white;
-  font-size: 1em;
-}
-
-#btn-spotify:hover, #btn-playlist:hover, #btn-setlists:hover {
-  cursor: pointer;
+  transition: 0s;
 }
 
 .available {
@@ -200,12 +184,12 @@
 }
 
 #spot {
-  font-family: 'Raleway Dots', cursive;
+  font-family: "Raleway Dots", cursive;
   font-size: 2.5em;
 }
 
 #set {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 2.5em;
   font-weight: 300;
 }
@@ -227,11 +211,6 @@
 
 #coming-soon {
   list-style-type: none;
-}
-
-#instructions {
-  text-align: left;
-  margin-left: 5%;
 }
 
 img {
