@@ -43,4 +43,13 @@ SetlistView.propTypes = {
   handleRemoveTrack: PropTypes.func
 };
 
+SetlistView.defaultProps = {
+  playlistTracks: [],
+  saveTitleHandler: () => {},
+  setlist: {},
+  title: "",
+  handleAddTrack: () => {},
+  handleRemoveTrack: () => {}
+};
+
 export default SetlistView;

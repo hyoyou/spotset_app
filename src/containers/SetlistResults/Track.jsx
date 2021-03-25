@@ -10,12 +10,12 @@ export const Track = ({ uri, addTrack, removeTrack, title }) => {
     }
   }, [uri]);
 
-  const handleAddTrack = (_e, uri) => {
+  const handleAddTrack = () => {
     setAddedToList(true);
     addTrack(uri);
   };
 
-  const handleRemoveTrack = (_e, uri) => {
+  const handleRemoveTrack = () => {
     setAddedToList(false);
     removeTrack(uri);
   };
@@ -24,11 +24,7 @@ export const Track = ({ uri, addTrack, removeTrack, title }) => {
     <div
       id={addedToList ? null : "removed"}
       className={uri ? "available" : "notfound"}
-      onClick={
-        addedToList
-          ? (e) => handleRemoveTrack(e, uri)
-          : (e) => handleAddTrack(e, uri)
-      }
+      onClick={addedToList ? handleRemoveTrack : handleAddTrack}
     >
       {title}
     </div>

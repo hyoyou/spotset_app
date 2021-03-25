@@ -20,4 +20,11 @@ TextInput.propTypes = {
   onChange: PropTypes.func
 };
 
+TextInput.defaultProps = {
+  id: "",
+  value: "PropTypes.any",
+  placeholder: "PropTypes.string",
+  onChange: () => {}
+};
+
 export default TextInput;

@@ -186,7 +186,7 @@ module.exports = exports = {
     "react/require-default-props": "error",
     "react/self-closing-comp": "error",
     "react/sort-comp": [
-      "error",
+      "warn",
       {
         order: ["static-methods", "lifecycle", "render", "everything-else"]
       }

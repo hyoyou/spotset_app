@@ -60,7 +60,7 @@ export default class SpotSet extends Component {
   };
 
   isValid = () => {
-    let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+    const expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   };
 

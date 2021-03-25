@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import * as Constants from "../../constants/ApiConstants";
 import Error from "../../components/Banner/Error";
@@ -19,44 +20,44 @@ export const Setlist = ({
   const [setlist, setSetlist] = useState({});
   const [playlistTracks, setPlaylistTracks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [fetchError, setFetchError] = useState("");
 
   useEffect(() => {
     if (setlistId) {
-      fetchSetlist(setlistId);
+      fetchSetlist();
     }
   }, [setlistId]);
 
-  const fetchSetlist = async (setlistId) => {
+  const fetchSetlist = async () => {
     const url = `${process.env.REACT_APP_SPOTSET_DEV_SERVER}/setlists/${setlistId}`;
     const request = { url: url };
 
     await httpClient
       .get(request)
       .then((response) => {
-        let title = formatTitle(response.data);
-        let playlistTracks = getDefaultPlaylistTracks(response.data.tracks);
+        const formattedTitle = formatTitle(response.data);
+        const tracks = getDefaultPlaylistTracks(response.data.tracks);
 
         setSetlist(response.data);
-        setTitle(title);
-        setPlaylistTracks(playlistTracks);
+        setTitle(formattedTitle);
+        setPlaylistTracks(tracks);
         setIsLoading(false);
       })
       .catch((error) => {
         if (error.response) {
-          setError(error.response.data.message);
+          setFetchError(error.response.data.message);
         } else {
-          setError(Constants.SERVER_ERROR);
+          setFetchError(Constants.SERVER_ERROR);
         }
       });
   };
 
-  const formatTitle = (setlist) => {
-    return setlist.artist + " at " + setlist.venue + " on " + setlist.eventDate;
+  const formatTitle = () => {
+    return `${setlist.artist} at ${setlist.venue} on ${setlist.eventDate}`;
   };
 
   const getDefaultPlaylistTracks = (availableTracks) => {
-    let availableUris = [];
+    const availableUris = [];
 
     availableTracks.map((track) => {
       if (track.trackUri !== null) {
@@ -68,7 +69,7 @@ export const Setlist = ({
     return availableUris;
   };
 
-  const saveTitle = (title) => {
+  const saveTitle = () => {
     setTitle(title);
   };
 
@@ -77,7 +78,7 @@ export const Setlist = ({
   };
 
   const handleRemoveTrack = (uri) => {
-    let updatedTracks = playlistTracks.filter((track) => {
+    const updatedTracks = playlistTracks.filter((track) => {
       return track !== uri;
     });
 
@@ -110,11 +111,33 @@ export const Setlist = ({
         playlistUrl={playlistUrl}
       />
 
-      <ConditionalContainer condition={error}>
-        <Error message={error} />
+      <ConditionalContainer condition={fetchError}>
+        <Error message={fetchError} />
       </ConditionalContainer>
     </>
   );
+};
+
+Setlist.propTypes = {
+  setlistId: PropTypes.string,
+  clearSetlist: PropTypes.func,
+  isUser: PropTypes.bool,
+  playlistUrl: PropTypes.string,
+  createPlaylist: PropTypes.func,
+  httpClient: PropTypes.shape({
+    get: PropTypes.func
+  })
+};
+
+Setlist.defaultProps = {
+  setlistId: "",
+  clearSetlist: () => {},
+  isUser: false,
+  playlistUrl: "",
+  createPlaylist: () => {},
+  httpClient: {
+    get: () => {}
+  }
 };
 
 export default Setlist;
