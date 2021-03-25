@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import SetlistSearchField from './SetlistSearchField';
 
 export const Setlists = ({ onClick }) => {
   const [setlistId, setSetlistId] = useState('');
@@ -10,16 +11,13 @@ export const Setlists = ({ onClick }) => {
 
   const handleClick = (event) => {
     event.preventDefault();
+    console.log('click')
     onClick(setlistId);
   }
 
   return (
     <div className='App-field'>
-      <form onSubmit={handleClick}>
-        <input id='setlistId' name='setlistId' type='text' value={setlistId} onChange={handleChange} placeholder='Enter setlist ID' />
-
-        <input id='btn-setlistId' type='submit' value='Display Setlist' onClick={handleClick} />
-      </form>
+      <SetlistSearchField onSubmit={handleClick} onChange={handleChange} setlistId={setlistId} />
 
       <div id='instructions'>
         <p>Search for your favorite artist and performance from <a href='https://www.setlist.fm/' target="_blank" rel="noopener noreferrer">Setlist.fm</a></p>

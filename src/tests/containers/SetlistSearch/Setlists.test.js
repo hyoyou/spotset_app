@@ -33,14 +33,4 @@ describe('Setlists Component', () => {
 
     expect(setState).toHaveBeenCalledWith('abc1234');
   });
-
-  it('callback function is called when display button is clicked', () => {
-    const onClick = jest.fn();
-    const wrapper = mount(<Setlists onClick={onClick} />);
-    const button = wrapper.find('#btn-setlistId').at(0);
-
-    button.simulate('click');
-
-    expect(onClick).toHaveBeenCalled();
-  });
 });
