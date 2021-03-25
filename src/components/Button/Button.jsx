@@ -2,16 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonElementType from './ButtonElementType'
 
-export const Button = ({ id, href, onSubmit, buttonType, children }) => {
+export const Button = ({ id, href, onClick, buttonType, children }) => {
 
   return buttonType === ButtonElementType.ANCHOR
     ? (
-      <a id={id} href={href} onClick={onSubmit}>
-        {children}
+      <a href={href}>
+        <button id={id}>
+          {children}
+        </button>
       </a >
     )
     : (
-      <button id={id} onClick={onSubmit}>
+      <button id={id} onClick={onClick}>
         {children}
       </button >
     )
@@ -20,14 +22,14 @@ export const Button = ({ id, href, onSubmit, buttonType, children }) => {
 Button.propTypes = {
   id: PropTypes.string,
   href: PropTypes.string,
-  onSubmit: PropTypes.func,
+  onClick: PropTypes.func,
   buttonType: PropTypes.string,
 }
 
 Button.defaultProps = {
   id: null,
   href: null,
-  onSubmit: null,
+  onClick: null,
   buttonType: ButtonElementType.BUTTON
 }
 

@@ -17,7 +17,7 @@ describe('Button', () => {
   it("should trigger onClick when component is a button and onClick provided", () => {
     const spy = jest.fn();
     const wrapper = shallow(
-      <Button onSubmit={spy}>
+      <Button onClick={spy}>
         Test Button
       </Button>
     );

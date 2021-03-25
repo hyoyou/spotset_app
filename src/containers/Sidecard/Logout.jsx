@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from '../../components/Button/Button';
 
 export const Logout = ({ logOutHandler }) => {
   return (
-    <div className="Logout">
-      <button id="btn-spotify" onClick={logOutHandler} type="button">Log Out</button>
-    </div>
+    <Button id="btn-spotify" onClick={logOutHandler}>
+      Log Out
+    </Button>
   );
 }
 

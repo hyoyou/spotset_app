@@ -10,7 +10,7 @@ describe('Login Component', () => {
     const getRedirectUrl = spotifyFunctions.getRedirectUrl = jest.fn();
     const wrapper = mount(<Login spotifyFunctions={spotifyFunctions} />);
 
-    wrapper.find('#btn-spotify').simulate('click');
+    wrapper.find('Button').simulate('click');
     expect(getRedirectUrl).toHaveBeenCalled();
   });
 });
