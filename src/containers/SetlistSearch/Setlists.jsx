@@ -11,7 +11,6 @@ export const Setlists = ({ onClick }) => {
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log('click')
     onClick(setlistId);
   }
 
