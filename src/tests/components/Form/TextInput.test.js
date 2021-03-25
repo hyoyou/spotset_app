@@ -1,8 +1,8 @@
-import { mount } from 'enzyme';
-import React from 'react';
-import TextInput from '../../../components/Form/TextInput';
+import { mount } from "enzyme";
+import React from "react";
+import TextInput from "../../../components/Form/TextInput";
 
-describe('TextInput', () => {
+describe("TextInput", () => {
   it("invokes the onChange prop when changed", () => {
     const handleChangeSpy = jest.fn();
     const wrapper = mount(
@@ -13,4 +13,4 @@ describe('TextInput', () => {
 
     expect(handleChangeSpy).toHaveBeenCalled();
   });
-})
+});

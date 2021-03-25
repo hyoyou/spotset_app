@@ -1,29 +1,35 @@
 # SpotSet Client [![Build Status](https://travis-ci.com/hyoyou/spotset_app.svg?branch=master)](https://travis-ci.com/hyoyou/spotset_app)
 
 ## Prerequisites
+
 - Node, Download [here](https://nodejs.org/en/download/)
 - Yarn, to install Node.js dependencies (Ways to install yarn can be found [here](https://yarnpkg.com/lang/en/docs/install/#mac-stable))
 
 ## Setup
-* Clone this repo and `cd` into directory
+
+- Clone this repo and `cd` into directory
 
 ### Setting up Environment Variables
-* Copy the .env.sample file into a .env file with command
+
+- Copy the .env.sample file into a .env file with command
 
 ```
 $ cp .env.sample .env
 ```
-or create a `.env` file in root and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
-* Insert your Spotify Client ID where specified and save
 
-* Run the following command to install dependencies:
+or create a `.env` file in root and copy the contents of the [.env.sample](https://github.com/hyoyou/spotset_app/blob/master/.env.sample) file
+
+- Insert your Spotify Client ID where specified and save
+
+- Run the following command to install dependencies:
 
 ```
 $ yarn
 ```
 
 ## Running the App
-* To run the app on development server, use the following command (make sure the [server](https://github.com/hyoyou/spotset_api) is already running):
+
+- To run the app on development server, use the following command (make sure the [server](https://github.com/hyoyou/spotset_api) is already running):
 
 ```
 $ yarn start
@@ -32,13 +38,15 @@ $ yarn start
 then navigate to http://localhost:3000/
 
 ## Running the Tests
-* To run unit tests, use the following command:
+
+- To run unit tests, use the following command:
 
 ```
 $ yarn test
 ```
 
 ## How to Use The App
+
 If server is already running, navigating to http://localhost:3000/ should take you to the page below:
 
 <p align="center">
@@ -64,4 +72,5 @@ Click on `Save as Playlist` to save. Upon success, you should see the button has
 </p>
 
 ## Troubleshoot
+
 I am currently working on fixing the issue where a user has been logged out after an hour due to an expired token, but the setlist is still saved. Please open the developer tools in a Chrome browser and run `localStorage.removeItem("setlist_id")` to remove it. Sorry for the inconvenience!

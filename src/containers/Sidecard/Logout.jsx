@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '../../components/Button/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "../../components/Button/Button";
 
 export const Logout = ({ logOutHandler }) => {
   return (
@@ -8,10 +8,10 @@ export const Logout = ({ logOutHandler }) => {
       Log Out
     </Button>
   );
-}
+};
 
 Logout.propTypes = {
-  logOutHandler: PropTypes.func.isRequired
-}
+  logOutHandler: PropTypes.func.isRequired,
+};
 
 export default Logout;
