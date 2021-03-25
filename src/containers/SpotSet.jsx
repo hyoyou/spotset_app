@@ -5,7 +5,7 @@ import HttpClient from '../utilities/HttpClient';
 import Login from './Sidecard/Login';
 import Logout from './Sidecard/Logout';
 import Setlist from './SetlistResults/Setlist';
-import Setlists from './SetlistSearch/Setlists';
+import SetlistSearch from './SetlistSearch/SetlistSearch';
 import SpotifyFunctions from '../helpers/SpotifyFunctions';
 
 export default class SpotSet extends Component {
@@ -96,7 +96,7 @@ export default class SpotSet extends Component {
     return (
       <>
         { !setlistId &&
-          <Setlists onClick={this.setSetlist} />
+          <SetlistSearch onClick={this.setSetlist} />
         }
 
         { setlistId &&

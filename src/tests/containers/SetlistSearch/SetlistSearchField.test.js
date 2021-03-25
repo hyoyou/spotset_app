@@ -1,4 +1,3 @@
-import { faItalic } from '@fortawesome/free-solid-svg-icons';
 import { mount } from 'enzyme';
 import React from 'react';
 import SetlistSearchField from '../../../containers/SetlistSearch/SetlistSearchField';
