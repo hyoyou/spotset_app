@@ -7,6 +7,7 @@ import Logout from './Sidecard/Logout';
 import Setlist from './SetlistResults/Setlist';
 import SetlistSearch from './SetlistSearch/SetlistSearch';
 import SpotifyFunctions from '../helpers/SpotifyFunctions';
+import ConditionalContainer from '../components/ConditionalContainer';
 
 export default class SpotSet extends Component {
   constructor(props) {
@@ -95,11 +96,8 @@ export default class SpotSet extends Component {
 
     return (
       <>
-        { !setlistId &&
-          <SetlistSearch onClick={this.setSetlist} />
-        }
-
-        { setlistId &&
+        { setlistId
+          ?
           <Setlist
             httpClient={this.httpClient}
             setlistId={setlistId}
@@ -108,15 +106,17 @@ export default class SpotSet extends Component {
             createPlaylist={this.playlistHandler}
             playlistUrl={this.state.playlistUrl}
           />
+          :
+          <SetlistSearch onClick={this.setSetlist} />
         }
 
         <div id="Spotify">
           {!isAuthenticated ? <Login spotifyFunctions={this.spotifyFunctions} /> : <Logout logOutHandler={this.logout} />}
         </div>
 
-        { error &&
+        <ConditionalContainer condition={error}>
           <Error message={error} />
-        }
+        </ConditionalContainer>
       </>
     );
   }
