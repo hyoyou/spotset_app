@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { mount, shallow } from 'enzyme';
 import React from 'react';
-import SetlistView from '../../../containers/SearchResults/SetlistView';
+import SetlistView from '../../../containers/SetlistResults/SetlistView';
 
 describe('SetlistView Component', () => {
   it('displays the setlist from valid passed in props', () => {

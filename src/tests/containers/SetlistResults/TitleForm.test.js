@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import React, { useState as useStateMock } from 'react';
-import TitleForm from '../../../containers/SearchResults/TitleForm';
+import TitleForm from '../../../containers/SetlistResults/TitleForm';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),

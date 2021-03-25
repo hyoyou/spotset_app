@@ -4,8 +4,8 @@ import Error from '../components/Banner/Error';
 import HttpClient from '../utilities/HttpClient';
 import Login from './Sidecard/Login';
 import Logout from './Sidecard/Logout';
-import Setlist from './SearchResults/Setlist';
-import Setlists from './SearchForm/Setlists';
+import Setlist from './SetlistResults/Setlist';
+import Setlists from './SetlistSearch/Setlists';
 import SpotifyFunctions from '../helpers/SpotifyFunctions';
 
 export default class SpotSet extends Component {

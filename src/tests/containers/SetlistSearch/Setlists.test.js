@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import React, { useState as useStateMock } from 'react';
-import Setlists from '../../../containers/SearchForm/Setlists';
+import Setlists from '../../../containers/SetlistSearch/Setlists';
 
 jest.mock('react', () => ({
   ...jest.requireActual('react'),

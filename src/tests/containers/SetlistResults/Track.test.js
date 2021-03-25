@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Track from '../../../containers/SearchResults/Track';
+import Track from '../../../containers/SetlistResults/Track';
 
 describe('Track Component', () => {
   it('sets addedToList to true when addTrack is called', () => {
