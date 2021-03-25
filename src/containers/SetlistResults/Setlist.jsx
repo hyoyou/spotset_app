@@ -7,6 +7,7 @@ import Playlist from "../Sidecard/Playlist";
 import SetlistView from "./SetlistView";
 import ConditionalContainer from "../../components/ConditionalContainer";
 import Icon from "../../components/Icon/Icon";
+import { formatTitle } from "../../formatters/title";
 
 export const Setlist = ({
   setlistId,
@@ -50,10 +51,6 @@ export const Setlist = ({
           setFetchError(Constants.SERVER_ERROR);
         }
       });
-  };
-
-  const formatTitle = () => {
-    return `${setlist.artist} at ${setlist.venue} on ${setlist.eventDate}`;
   };
 
   const getDefaultPlaylistTracks = (availableTracks) => {
@@ -131,12 +128,12 @@ Setlist.propTypes = {
 
 Setlist.defaultProps = {
   setlistId: "",
-  clearSetlist: () => {},
+  clearSetlist: () => { },
   isUser: false,
   playlistUrl: "",
-  createPlaylist: () => {},
+  createPlaylist: () => { },
   httpClient: {
-    get: () => {}
+    get: () => { }
   }
 };
 
