@@ -26,10 +26,6 @@ export const Playlist = ({
 
       <ConditionalContainer condition={playlistUrl}>
         <>
-          <h3>
-            <Icon id="icon-thumbsUp" icon={faThumbsUp} />
-            {" Your playlist has been created"}
-          </h3>
           <Button
             id="btn-playlist"
             href={playlistUrl}
@@ -38,6 +34,11 @@ export const Playlist = ({
           >
             Go to Playlist
           </Button>
+
+          <h3>
+            <Icon id="icon-thumbsUp" icon={faThumbsUp} />
+            {" Your playlist has been created"}
+          </h3>
         </>
       </ConditionalContainer>
 

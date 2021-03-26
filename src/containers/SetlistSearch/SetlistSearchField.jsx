@@ -13,7 +13,7 @@ export const SetlistSearchField = ({ onSubmit, onChange, setlistId }) => {
         placeholder="Enter setlist ID"
       />
 
-      <Button id="btn-setlistId" onClick={onSubmit}>
+      <Button id="btn-setlistSearch" onClick={onSubmit}>
         Display Setlist
       </Button>
     </form>

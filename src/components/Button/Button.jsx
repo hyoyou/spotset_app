@@ -14,7 +14,7 @@ export const Button = ({
   const rel = isExternalLink ? "noopener noreferrer" : null;
 
   return buttonType === ButtonElementType.ANCHOR ? (
-    <a href={href} target={target} rel={rel}>
+    <a id={id} href={href} target={target} rel={rel}>
       <button id={id} type="button">
         {children}
       </button>
