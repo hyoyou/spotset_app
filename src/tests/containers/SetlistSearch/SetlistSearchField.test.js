@@ -1,6 +1,6 @@
 import { mount } from "enzyme";
 import React from "react";
-import SetlistSearchField from "../../../containers/SetlistSearch/SetlistSearchField";
+import { SetlistSearchField } from "../../../containers/SetlistSearch";
 
 describe("SetlistSearchField", () => {
   it("renders an input field and a submit button", () => {

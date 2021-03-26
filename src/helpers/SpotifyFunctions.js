@@ -1,4 +1,5 @@
 import * as Constants from "../constants/ApiConstants";
+import { loadState, saveState, Properties } from "../utilities";
 
 class SpotifyFunctions {
   constructor(httpClient) {
@@ -37,7 +38,7 @@ class SpotifyFunctions {
   };
 
   checkForSpotifyAccessToken = () => {
-    const savedToken = localStorage.getItem("access_token");
+    const savedToken = loadState(Properties.ACCESS_TOKEN);
     if (savedToken) {
       return savedToken;
     }
@@ -51,8 +52,8 @@ class SpotifyFunctions {
 
     const expiresAt = hash.expires_in * 1000 + new Date().getTime();
 
-    localStorage.setItem("access_token", accessToken);
-    localStorage.setItem("expires_at", expiresAt);
+    saveState(Properties.ACCESS_TOKEN, accessToken);
+    saveState(Properties.EXPIRES_AT, expiresAt);
     return accessToken;
   };
 
@@ -63,7 +64,7 @@ class SpotifyFunctions {
   formatHeader = () => {
     return {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("access_token")}`
+      Authorization: `Bearer ${loadState(Properties.ACCESS_TOKEN)}`
     };
   };
 

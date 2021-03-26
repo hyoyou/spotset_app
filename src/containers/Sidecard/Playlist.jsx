@@ -1,7 +1,9 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import ConditionalContainer from "../../components/ConditionalContainer";
+import { Button, ButtonElementType } from "../../components/Button";
+import Icon from "../../components/Icon/Icon";
 
 export const Playlist = ({
   clearSetlist,
@@ -11,34 +13,37 @@ export const Playlist = ({
 }) => {
   return (
     <div id="Playlist">
-      {isUser && !playlistUrl && (
-        <button id="btn-spotify" onClick={createPlaylist} type="button">
+      <ConditionalContainer condition={isUser && !playlistUrl}>
+        <Button id="btn-spotify" onClick={createPlaylist}>
           Save as Playlist
-        </button>
-      )}
-      {!isUser && <h2>Log in to save playlist</h2>}
+        </Button>
+      </ConditionalContainer>
 
-      {playlistUrl && (
+      <ConditionalContainer condition={!isUser}>
+        <h2>Log in to save playlist</h2>
+      </ConditionalContainer>
+
+      <ConditionalContainer condition={playlistUrl}>
         <>
+          <Button
+            id="btn-playlist"
+            href={playlistUrl}
+            buttonType={ButtonElementType.ANCHOR}
+            isExternalLink={true}
+          >
+            Go to Playlist
+          </Button>
+
           <h3>
-            <FontAwesomeIcon id="icon-thumbsUp" icon={faThumbsUp} />
-            Your playlist has been created
+            <Icon id="icon-thumbsUp" icon={faThumbsUp} />
+            {" Your playlist has been created"}
           </h3>
-          <a href={playlistUrl} target="_blank" rel="noopener noreferrer">
-            <button id="btn-playlist" type="button">
-              Go to Playlist
-            </button>
-          </a>
         </>
-      )}
+      </ConditionalContainer>
 
-      <h4>Features Coming Soon:</h4>
-      <p>Toggle Private/Public Playlist</p>
-      <p>Tweet a Link to Your Playlist</p>
-
-      <button id="btn-setlists" onClick={clearSetlist} type="button">
+      <Button id="btn-setlists" onClick={clearSetlist}>
         Find a Different Setlist
-      </button>
+      </Button>
     </div>
   );
 };

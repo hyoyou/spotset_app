@@ -1,8 +1,8 @@
 import { mount } from "enzyme";
 import React from "react";
-import SetlistView from "../../../containers/SetlistResults/SetlistView";
+import { SetlistResults } from "../../../containers/SetlistResults";
 
-describe("SetlistView Component", () => {
+describe("SetlistResults Component", () => {
   it("displays the setlist from valid passed in props", () => {
     const testProps = {
       id: "testId",
@@ -16,7 +16,7 @@ describe("SetlistView Component", () => {
       ]
     };
 
-    const wrapper = mount(<SetlistView setlist={testProps} />);
+    const wrapper = mount(<SetlistResults setlist={testProps} />);
 
     expect(wrapper.find("Track").length).toEqual(3);
   });

@@ -1,7 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
-import Button from "../../../components/Button/Button";
-import ButtonElementType from "../../../components/Button/ButtonElementType";
+import { Button, ButtonElementType } from "../../../components/Button";
 
 describe("Button", () => {
   it("should render provided children", () => {

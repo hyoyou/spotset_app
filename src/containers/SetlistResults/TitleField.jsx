@@ -20,12 +20,15 @@ export const TitleField = ({ title, saveTitleHandler }) => {
   };
 
   return (
-    <div className="App-field">
-      <form>
-        <TextInput id="title" value={newTitle} onChange={handleChange} />
-        <Icon id="icon-edit" icon={faPencilAlt} />
-      </form>
-    </div>
+    <form className="App-field">
+      <TextInput
+        id="title"
+        value={newTitle}
+        onChange={handleChange}
+        placeholder="Please Enter a Playlist Title"
+      />
+      <Icon id="icon-edit" icon={faPencilAlt} />
+    </form>
   );
 };
 
@@ -36,7 +39,7 @@ TitleField.propTypes = {
 
 TitleField.defaultProps = {
   title: "",
-  saveTitleHandler: null
+  saveTitleHandler: () => {}
 };
 
 export default TitleField;

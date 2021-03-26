@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../components/Button/Button";
+import { Button } from "../../components/Button";
 import TextInput from "../../components/Form/TextInput";
 
 export const SetlistSearchField = ({ onSubmit, onChange, setlistId }) => {
@@ -10,10 +10,10 @@ export const SetlistSearchField = ({ onSubmit, onChange, setlistId }) => {
         id="setlistId"
         value={setlistId}
         onChange={onChange}
-        placeholder="Enter setlist ID"
+        placeholder="Enter Setlist ID"
       />
 
-      <Button id="btn-setlistId" onClick={onSubmit}>
+      <Button id="btn-setlistSearch" onClick={onSubmit}>
         Display Setlist
       </Button>
     </form>

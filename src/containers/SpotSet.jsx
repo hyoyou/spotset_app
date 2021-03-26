@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import * as Constants from "../constants/ApiConstants";
 import Error from "../components/Banner/Error";
 import HttpClient from "../utilities/HttpClient";
-import Login from "./Sidecard/Login";
-import Logout from "./Sidecard/Logout";
-import Setlist from "./SetlistResults/Setlist";
-import SetlistSearch from "./SetlistSearch/SetlistSearch";
+import { loadState, saveState, removeState, Properties } from "../utilities";
+import { Login, Logout } from "./Sidecard";
+import { SetlistContainer } from "./SetlistResults";
+import { SetlistSearch } from "./SetlistSearch";
 import SpotifyFunctions from "../helpers/SpotifyFunctions";
 import ConditionalContainer from "../components/ConditionalContainer";
 
@@ -31,7 +31,7 @@ export default class SpotSet extends Component {
   }
 
   checkForSetlist() {
-    const selectedSetlist = localStorage.getItem("setlist_id");
+    const selectedSetlist = loadState(Properties.SETLIST_ID);
 
     if (selectedSetlist) {
       this.setState({ setlistId: selectedSetlist });
@@ -46,12 +46,12 @@ export default class SpotSet extends Component {
   }
 
   setSetlist = (setlistId) => {
-    localStorage.setItem("setlist_id", setlistId);
+    saveState(Properties.SETLIST_ID, setlistId);
     this.setState({ setlistId });
   };
 
   clearSetlist = () => {
-    localStorage.removeItem("setlist_id");
+    removeState(Properties.SETLIST_ID);
     this.setState({
       setlistId: null,
       playlistUrl: null,
@@ -60,14 +60,14 @@ export default class SpotSet extends Component {
   };
 
   isValid = () => {
-    const expiresAt = JSON.parse(localStorage.getItem("expires_at"));
+    const expiresAt = JSON.parse(loadState(Properties.EXPIRES_AT));
     return new Date().getTime() < expiresAt;
   };
 
   logout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("expires_at");
-    localStorage.removeItem("setlist_id");
+    removeState(Properties.ACCESS_TOKEN);
+    removeState(Properties.EXPIRES_AT);
+    removeState(Properties.SETLIST_ID);
 
     this.setState({
       isAuthenticated: false,
@@ -97,7 +97,7 @@ export default class SpotSet extends Component {
     return (
       <>
         {setlistId ? (
-          <Setlist
+          <SetlistContainer
             httpClient={this.httpClient}
             setlistId={setlistId}
             clearSetlist={this.clearSetlist}
@@ -111,7 +111,7 @@ export default class SpotSet extends Component {
 
         <div id="Spotify">
           {!isAuthenticated ? (
-            <Login spotifyFunctions={this.spotifyFunctions} />
+            <Login redirectUrl={this.spotifyFunctions.getRedirectUrl()} />
           ) : (
             <Logout logOutHandler={this.logout} />
           )}

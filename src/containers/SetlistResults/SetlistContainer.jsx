@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import * as Constants from "../../constants/ApiConstants";
 import Error from "../../components/Banner/Error";
-import Playlist from "../Sidecard/Playlist";
-import SetlistView from "./SetlistView";
+import { Playlist } from "../Sidecard";
+import SetlistResults from "./SetlistResults";
 import ConditionalContainer from "../../components/ConditionalContainer";
 import Icon from "../../components/Icon/Icon";
 import { formatTitle } from "../../formatters/title";
 
-export const Setlist = ({
+export const SetlistContainer = ({
   setlistId,
   clearSetlist,
   isUser,
@@ -66,8 +66,8 @@ export const Setlist = ({
     return availableUris;
   };
 
-  const saveTitle = () => {
-    setTitle(title);
+  const saveTitle = (titleToSave) => {
+    setTitle(titleToSave);
   };
 
   const handleAddTrack = (uri) => {
@@ -92,7 +92,7 @@ export const Setlist = ({
         <Icon id="icon-spinner" icon={faSpinner} size="3x" shouldPulse={true} />
       </ConditionalContainer>
 
-      <SetlistView
+      <SetlistResults
         setlist={setlist}
         playlistTracks={playlistTracks}
         title={title}
@@ -115,18 +115,21 @@ export const Setlist = ({
   );
 };
 
-Setlist.propTypes = {
+SetlistContainer.propTypes = {
   setlistId: PropTypes.string,
   clearSetlist: PropTypes.func,
   isUser: PropTypes.bool,
   playlistUrl: PropTypes.string,
   createPlaylist: PropTypes.func,
-  httpClient: PropTypes.shape({
-    get: PropTypes.func
-  })
+  httpClient: PropTypes.oneOfType([
+    PropTypes.shape({
+      get: PropTypes.func
+    }),
+    PropTypes.func
+  ])
 };
 
-Setlist.defaultProps = {
+SetlistContainer.defaultProps = {
   setlistId: "",
   clearSetlist: () => {},
   isUser: false,
@@ -137,4 +140,4 @@ Setlist.defaultProps = {
   }
 };
 
-export default Setlist;
+export default SetlistContainer;

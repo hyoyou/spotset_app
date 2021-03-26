@@ -1,6 +1,6 @@
 import { mount } from "enzyme";
 import React, { useState as useStateMock } from "react";
-import TitleField from "../../../containers/SetlistResults/TitleField";
+import { TitleField } from "../../../containers/SetlistResults";
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),

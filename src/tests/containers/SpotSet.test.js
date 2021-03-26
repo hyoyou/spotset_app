@@ -1,8 +1,11 @@
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import React from "react";
 import MockSpotifyErrorFunctions from "../mocks/MockSpotifyErrorFunctions";
 import MockSpotifySuccessFunctions from "../mocks/MockSpotifySuccessFunctions";
 import SpotSet from "../../containers/SpotSet";
+import axios from "axios";
+
+jest.mock("axios");
 
 describe("SpotSet Component", () => {
   it("renders the Login component when user is not signed in", () => {
@@ -73,11 +76,13 @@ describe("SpotSet Component", () => {
     expect(wrapper.state().error).toBeNull();
   });
 
-  it.skip("formats the URL of the newly created playlist with the result from a successful call to create playlist", async (done) => {
-    const wrapper = shallow(<SpotSet />);
-
-    wrapper.instance().spotifyFunctions = new MockSpotifySuccessFunctions();
-    await wrapper.instance().playlistHandler(5, "title");
+  it("formats the URL of the newly created playlist with the result from a successful call to create playlist", (done) => {
+    const wrapper = mount(<SpotSet />);
+    const httpClient = axios;
+    wrapper.instance().spotifyFunctions = new MockSpotifySuccessFunctions(
+      httpClient
+    );
+    wrapper.instance().playlistHandler(5, "title");
 
     process.nextTick(() => {
       expect(wrapper.state().playlistUrl).toEqual(
@@ -88,11 +93,13 @@ describe("SpotSet Component", () => {
     });
   });
 
-  it.skip("returns an error when call to create a playlist results in an error", async (done) => {
-    const wrapper = shallow(<SpotSet />);
-
-    wrapper.instance().spotifyFunctions = new MockSpotifyErrorFunctions();
-    await wrapper.instance().playlistHandler(5, "title");
+  it("returns an error when call to create a playlist results in an error", (done) => {
+    const wrapper = mount(<SpotSet />);
+    const httpClient = axios;
+    wrapper.instance().spotifyFunctions = new MockSpotifyErrorFunctions(
+      httpClient
+    );
+    wrapper.instance().playlistHandler(5, "title");
 
     process.nextTick(() => {
       expect(wrapper.state().error).toEqual("Could not get the username.");
