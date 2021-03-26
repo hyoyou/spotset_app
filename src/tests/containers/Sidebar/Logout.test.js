@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
-import Logout from "../../../containers/Sidecard/Logout";
+import { Logout } from "../../../containers/Sidebar";
 
 describe("Logout Component", () => {
   it("Log out button calls the logout handler when clicked", () => {

@@ -1,6 +1,6 @@
 import { mount } from "enzyme";
 import React from "react";
-import Playlist from "../../../containers/Sidecard/Playlist";
+import { Playlist } from "../../../containers/Sidebar";
 
 describe("Playlist Component", () => {
   it("renders a button to create playlist when user is signed in", () => {

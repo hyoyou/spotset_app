@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import * as Constants from "../../constants/ApiConstants";
 import Error from "../../components/Banner/Error";
-import { Playlist } from "../Sidecard";
+import { Playlist } from "../Sidebar";
 import SetlistResults from "./SetlistResults";
 import ConditionalContainer from "../../components/ConditionalContainer";
 import Icon from "../../components/Icon/Icon";

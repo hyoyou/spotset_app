@@ -3,7 +3,7 @@ import * as Constants from "../constants/ApiConstants";
 import Error from "../components/Banner/Error";
 import HttpClient from "../utilities/HttpClient";
 import { loadState, saveState, removeState, Properties } from "../utilities";
-import { Login, Logout } from "./Sidecard";
+import { Login, Logout } from "./Sidebar";
 import { SetlistContainer } from "./SetlistResults";
 import { SetlistSearch } from "./SetlistSearch";
 import SpotifyFunctions from "../helpers/SpotifyFunctions";
