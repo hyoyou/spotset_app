@@ -5,7 +5,7 @@ import HttpClient from "../utilities/HttpClient";
 import { loadState, saveState, removeState, Properties } from "../utilities";
 import Login from "./Sidecard/Login";
 import Logout from "./Sidecard/Logout";
-import Setlist from "./SetlistResults/Setlist";
+import SetlistContainer from "./SetlistResults/SetlistContainer";
 import SetlistSearch from "./SetlistSearch/SetlistSearch";
 import SpotifyFunctions from "../helpers/SpotifyFunctions";
 import ConditionalContainer from "../components/ConditionalContainer";
@@ -98,7 +98,7 @@ export default class SpotSet extends Component {
     return (
       <>
         {setlistId ? (
-          <Setlist
+          <SetlistContainer
             httpClient={this.httpClient}
             setlistId={setlistId}
             clearSetlist={this.clearSetlist}

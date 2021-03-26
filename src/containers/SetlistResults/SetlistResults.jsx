@@ -3,7 +3,7 @@ import TitleField from "./TitleField";
 import Track from "./Track";
 import PropTypes from "prop-types";
 
-export const SetlistView = ({
+export const SetlistResults = ({
   playlistTracks,
   saveTitleHandler,
   setlist,
@@ -12,7 +12,7 @@ export const SetlistView = ({
   handleRemoveTrack
 }) => {
   return (
-    <div id="SetlistView">
+    <div id="SetlistResults">
       <TitleField title={title} saveTitleHandler={saveTitleHandler} />
 
       {setlist.tracks && (
@@ -34,7 +34,7 @@ export const SetlistView = ({
   );
 };
 
-SetlistView.propTypes = {
+SetlistResults.propTypes = {
   playlistTracks: PropTypes.array,
   saveTitleHandler: PropTypes.func,
   setlist: PropTypes.object,
@@ -43,7 +43,7 @@ SetlistView.propTypes = {
   handleRemoveTrack: PropTypes.func
 };
 
-SetlistView.defaultProps = {
+SetlistResults.defaultProps = {
   playlistTracks: [],
   saveTitleHandler: () => {},
   setlist: {},
@@ -52,4 +52,4 @@ SetlistView.defaultProps = {
   handleRemoveTrack: () => {}
 };
 
-export default SetlistView;
+export default SetlistResults;

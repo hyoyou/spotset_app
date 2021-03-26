@@ -69,7 +69,7 @@ footer {
 
 /* || Component Specific Styles */
 
-#SetlistView {
+#SetlistResults {
   grid-column: 1/2;
   grid-row: 3/5;
   align-items: center;
