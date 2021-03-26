@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import Button from "../../components/Button/Button";
 import ButtonElementType from "../../components/Button/ButtonElementType";
 
-export const Login = ({ spotifyFunctions }) => {
+export const Login = ({ redirectUrl }) => {
   return (
     <Button
       buttonType={ButtonElementType.ANCHOR}
-      href={spotifyFunctions.getRedirectUrl()}
+      href={redirectUrl}
       id="btn-spotify"
     >
       Log in to Spotify
@@ -16,7 +16,11 @@ export const Login = ({ spotifyFunctions }) => {
 };
 
 Login.propTypes = {
-  spotifyFunctions: PropTypes.object.isRequired
+  redirectUrl: PropTypes.string
+};
+
+Login.defaultProps = {
+  redirectUrl: null
 };
 
 export default Login;

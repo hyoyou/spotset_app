@@ -112,7 +112,7 @@ export default class SpotSet extends Component {
 
         <div id="Spotify">
           {!isAuthenticated ? (
-            <Login spotifyFunctions={this.spotifyFunctions} />
+            <Login redirectUrl={this.spotifyFunctions.getRedirectUrl()} />
           ) : (
             <Logout logOutHandler={this.logout} />
           )}

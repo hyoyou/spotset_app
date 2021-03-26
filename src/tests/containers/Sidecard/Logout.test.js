@@ -8,6 +8,7 @@ describe("Logout Component", () => {
     const wrapper = shallow(<Logout logOutHandler={spy} />);
 
     wrapper.find("#btn-spotify").simulate("click");
+
     expect(spy).toHaveBeenCalled();
   });
 });
