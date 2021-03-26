@@ -2,8 +2,7 @@ import React from "react";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import ConditionalContainer from "../../components/ConditionalContainer";
-import Button from "../../components/Button/Button";
-import ButtonElementType from "../../components/Button/ButtonElementType";
+import { Button, ButtonElementType } from "../../components/Button";
 import Icon from "../../components/Icon/Icon";
 
 export const Playlist = ({

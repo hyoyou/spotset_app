@@ -2,7 +2,7 @@ import { mount } from "enzyme";
 import React, { useState as useStateMock } from "react";
 import axios from "axios";
 import PromiseFactory from "../../testHelpers/PromiseFactory";
-import SetlistContainer from "../../../containers/SetlistResults/SetlistContainer";
+import { SetlistContainer } from "../../../containers/SetlistResults";
 
 jest.mock("axios");
 

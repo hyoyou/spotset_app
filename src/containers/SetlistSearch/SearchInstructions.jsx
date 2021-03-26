@@ -5,7 +5,7 @@ export const SearchInstructions = () => {
     <>
       <div id="instructions">
         <p>
-          Search for your favorite artist and performance from{" "}
+          {"Search for your favorite artist and performance from "}
           <a
             href="https://www.setlist.fm/"
             target="_blank"

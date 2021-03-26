@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Button from "../../components/Button/Button";
-import ButtonElementType from "../../components/Button/ButtonElementType";
+import { Button, ButtonElementType } from "../../components/Button";
 
 export const Login = ({ redirectUrl }) => {
   return (

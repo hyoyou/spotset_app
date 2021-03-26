@@ -3,10 +3,9 @@ import * as Constants from "../constants/ApiConstants";
 import Error from "../components/Banner/Error";
 import HttpClient from "../utilities/HttpClient";
 import { loadState, saveState, removeState, Properties } from "../utilities";
-import Login from "./Sidecard/Login";
-import Logout from "./Sidecard/Logout";
-import SetlistContainer from "./SetlistResults/SetlistContainer";
-import SetlistSearch from "./SetlistSearch/SetlistSearch";
+import { Login, Logout } from "./Sidecard";
+import { SetlistContainer } from "./SetlistResults";
+import { SetlistSearch } from "./SetlistSearch";
 import SpotifyFunctions from "../helpers/SpotifyFunctions";
 import ConditionalContainer from "../components/ConditionalContainer";
 

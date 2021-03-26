@@ -1,6 +1,6 @@
 import { mount } from "enzyme";
 import React from "react";
-import SetlistResults from "../../../containers/SetlistResults/SetlistResults";
+import { SetlistResults } from "../../../containers/SetlistResults";
 
 describe("SetlistResults Component", () => {
   it("displays the setlist from valid passed in props", () => {
