@@ -2,9 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import ButtonElementType from "./ButtonElementType";
 
-export const Button = ({ id, href, onClick, buttonType, children }) => {
+export const Button = ({
+  id,
+  href,
+  onClick,
+  buttonType,
+  isExternalLink,
+  children
+}) => {
+  const target = isExternalLink ? "_blank" : null;
+  const rel = isExternalLink ? "noopener noreferrer" : null;
+
   return buttonType === ButtonElementType.ANCHOR ? (
-    <a href={href}>
+    <a href={href} target={target} rel={rel}>
       <button id={id} type="button">
         {children}
       </button>
@@ -21,6 +31,7 @@ Button.propTypes = {
   href: PropTypes.string,
   onClick: PropTypes.func,
   buttonType: PropTypes.string,
+  isExternalLink: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
@@ -33,6 +44,7 @@ Button.defaultProps = {
   href: null,
   onClick: null,
   buttonType: ButtonElementType.BUTTON,
+  isExternalLink: false,
   children: ""
 };
 
