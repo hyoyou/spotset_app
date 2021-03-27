@@ -167,6 +167,10 @@ button#btn-playlist {
   }
 }
 
+#setlist-link:visited {
+  color: white;
+}
+
 /* || Track Styles */
 
 .App-list {

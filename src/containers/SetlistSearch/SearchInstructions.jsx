@@ -7,6 +7,7 @@ export const SearchInstructions = () => {
         <p>
           {"Search for your favorite artist and performance from "}
           <a
+            id="setlist-link"
             href="https://www.setlist.fm/"
             target="_blank"
             rel="noopener noreferrer"
